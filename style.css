@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    background-color: #ECF8F2;
 }
 
 .container {
@@ -13,7 +14,7 @@ body {
 }
 
 header {
-    background-color: #f0f8f0;
+    background: linear-gradient(to bottom right, #e4f4e6, #f8f5e1);
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
 }
@@ -154,7 +155,8 @@ main {
 }
 
 .concern-list a {
-    background-color: #e0f2e0;
+   
+    background-color: #c0f3c0;
     padding: 8px 15px;
     text-decoration: none;
     color: #333;

@@ -139,13 +139,18 @@ main {
 
 .herb-item {
     border: 1px solid #ddd;
+    border-radius: 20px;
     padding: 15px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.herb-item:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
 .herb-item img {
     max-width: 15rem;
     height: auto;
+    border-radius: 20px;
 }
 
 .concern-list {
@@ -172,3 +177,38 @@ footer {
 .hidden{
     display: none;
 }
+
+/* login page*/
+.container1{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  
+    padding-top:50px;
+    padding-left: 100px;
+
+}
+
+.loginImg {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  .loginImg img {
+    max-width: 100%;
+    height: auto;
+    margin:0;
+ 
+  }
+  
+  .loginContent {
+    flex: 1;
+    padding: 20px;
+    margin-right: -200px; 
+  }
+

@@ -13,57 +13,60 @@
             <h1>HerbVita</h1>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#">Browse Herbs</a></li>
-                    <li><a href="login.html">Login/Register</a></li>
-                </ul>
+                    <li><a href="index.php">Home</a></li> 
+                    <li><a href="browseHerb.php">Browse Herbs</a></li>
+                    <li><a href="login.php">Login/Register</a></li> </ul>
             </nav>
 
-            <div id="search-bar-header"> <form action="search.php" method="get">
+            <div id="search-bar-header">
+                <form action="search.php" method="get">
+                    <input type="text" name="query" placeholder="Search Herbs...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <section id="user-section" class="hidden">
+            <h2>Welcome, User!</h2>
+            <div class="user-options">
+                <a href="saved-list.php">Saved Herbs</a>
+                <a href="profile.php">Profile</a>
+                <a href="logout.php">Logout</a>
+            </div>
+        </section>
+
+        </div>
+    </header>
+
+    <main class="container">
+        
+
+        <div id="search-bar-main">
+            <form action="search.php" method="get">
                 <input type="text" name="query" placeholder="Search Herbs...">
                 <button type="submit">Search</button>
             </form>
         </div>
 
-
-        </div>
-    </header>
-
-    
-
-    <main class="container">
-        
-        <div id="search-bar-main"> <form action="search.php" method="get">
-            <input type="text" name="query" placeholder="Search Herbs...">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-
-
-        <section id="featured-herbs">
-            <h2>Featured Herbs(placeholder)</h2>
+        <section id="featured-herbs-static">  <h2>Featured Herbs (placeholder)</h2>
             <div class="herb-grid">
                 <div class="herb-item">
                     <img src="./img/peppermint.jpg" alt="peppermint">
-                    <h3>Peppermint(placeholder)</h3>
+                    <h3>Peppermint (placeholder)</h3>
                     <p>Brief description take info from sql...</p>
                     <a href="">View Details</a>
                 </div>
-
                 <div class="herb-item">
                     <img src="./img/peppermint.jpg" alt="peppermint">
-                    <h3>Herb2(placeholder)</h3>
+                    <h3>Herb2 (placeholder)</h3>
                     <p>Brief description take info from sql...</p>
                     <a href="">View Details</a>
                 </div>
-
                 <div class="herb-item">
                     <img src="./img/peppermint.jpg" alt="peppermint">
-                    <h3>Herb3(placeholder)</h3>
+                    <h3>Herb3 (placeholder)</h3>
                     <p>Brief description take info from sql...</p>
                     <a href="">View Details</a>
                 </div>
-
             </div>
         </section>
 
@@ -75,20 +78,7 @@
             </div>
         </section>
 
-        <section id="user-section" class="hidden">
-            <h2>Welcome, User!</h2>
-            <div class="user-options">
-                <a href="saved-list.php">Saved Herbs</a>
-                <a href="profile.php">Profile</a>
-                <a href="logout.php">Logout</a>
-            </div>
-        </section>
 
-        <section id="herb-details" class="hidden">
-        </section>
-
-        <section id="comments" class="hidden">
-        </section>
     </main>
 
     <footer>

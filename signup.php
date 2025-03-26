@@ -1,5 +1,6 @@
 <?php
 session_start();
+include ('signup-process.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

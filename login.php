@@ -35,8 +35,8 @@ session_start();
                 <label for="userID">User ID:</label>
                 <input type="text" id="userID" name="userID" required><br><br>
     
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br><br>
+                <label for="passwordHash">Password:</label>
+                <input type="password" id="passwordHash" name="passwordHash" required><br><br>
     
                 <button type="submit">Login</button>
             </form>

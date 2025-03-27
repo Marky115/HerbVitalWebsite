@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // User found, verify passwordHash
         $user = $result->fetch_assoc();
         
-        if (passwordHash_verify($passwordHash, $user['passwordHash'])) {
+        if (password_verify($passwordHash, $user['passwordHash'])) {
             // Login successful
             $_SESSION['loggedin'] = true;
             $_SESSION['userID'] = $user['userID'];
@@ -28,13 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Invalid passwordHash
-            $_SESSION['login_error'] = "Invalid username or passwordHash";
+            $_SESSION['login_error'] = "Invalid username or password";
             header("Location: login.php");
             exit();
         }
     } else {
         // User not found
-        $_SESSION['login_error'] = "Invalid username or passwordHash";
+        $_SESSION['login_error'] = "Invalid username or password";
         header("Location: login.php");
         exit();
     }

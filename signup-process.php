@@ -2,33 +2,42 @@
 session_start();
 require('db_connect.php');
 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize and validate inputs
-    $userID = trim($_POST['userID']);
-    $Name = trim($_POST['Name']);
-    $Email = trim($_POST['Email']);
-    $passwordHash = $_POST['passwordHash'];
-    $healthInterest = trim($_POST['healthInterest']);
+    $userID = isset($_POST['userID']) ? trim($_POST['userID']) : '';
+    $Name = isset($_POST['Name']) ? trim($_POST['Name']) : '';
+    $Email = isset($_POST['Email']) ? trim($_POST['Email']) : '';
+    $passwordHash = isset($_POST['passwordHash']) ? $_POST['passwordHash'] : '';
+    
+  
+   $healthInterest = isset($_POST['healthInterest']) ? trim($_POST['healthInterest']) : '';
 
-    // Validate inputs
+    // Collect errors
     $errors = [];
 
-     // Validate User ID (allow letters and numbers)
-     if (empty($userID) || !preg_match("/^[a-zA-Z0-9]+$/", $userID)) {
+    if (empty($userID) || !preg_match("/^[a-zA-Z0-9]+$/", $userID)) {
         $errors[] = "Invalid User ID. Must contain only letters and numbers.";
     }
 
-    // Validate Name (allow any characters, just check length)
-    if (empty($Name) || strlen($Name) <= 20) {
+    
+    if (empty($Name) || strlen($Name) > 20) {
         $errors[] = "Name must be 1-20 characters long.";
     }
 
-    // Validate Email (strict email format)
     if (empty($Email) || !filter_var($Email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid Email Address.";
     }
-  
+    
+   
+    if (empty($passwordHash)) {
+        $errors[] = "Password cannot be empty.";
+    }
     
     // Check if userID already exists
     $check_stmt = $conn->prepare("SELECT userID FROM user WHERE userID = ?");
@@ -50,33 +59,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $check_Email_stmt->close();
 
-    // If no errors, proceed with registration
+    // Proceed only if there are no errors
     if (empty($errors)) {
-        // Hash the passwordHash
-        $passwordHashHash = passwordHash_hash($passwordHash, passwordHash_DEFAULT);
+        // Hash the password using PHP's password_hash function with the constant PASSWORD_DEFAULT
+        $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
 
         // Prepare SQL to insert new user
-        $stmt = $conn->prepare("INSERT INTO user (userID, Name, Email, passwordHashHash, healthInterest) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $userID, $Name, $Email, $passwordHashHash, $healthInterest);
+        $stmt = $conn->prepare("INSERT INTO user (userID, Name, Email, passwordHash, healthInterest) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $userID, $Name, $Email, $passwordHash, $healthInterest);
 
         try {
-            // Execute the statement
+            // Attempt to execute the statement
             if ($stmt->execute()) {
-                // Registration successful
+                // Registration successful; store success message and forward to login page
                 $_SESSION['signup_success'] = "Account created successfully. Please log in.";
                 header("Location: login.php");
                 exit();
             } else {
-                throw new Exception("Registration failed");
+                // If execution fails, throw an exception with the error from the statement
+                throw new Exception("Registration failed: " . $stmt->error);
             }
         } catch (Exception $e) {
-            $errors[] = "Registration failed. Please try again.";
+            $errors[] = "Registration failed. Please try again. " . $e->getMessage();
         }
 
         $stmt->close();
     }
 
-    // If there are errors, store them in session and redirect back to signup
+    // If there are any errors, save them to the session and redirect back to the signup page
     if (!empty($errors)) {
         $_SESSION['signup_error'] = implode("<br>", $errors);
         header("Location: signup.php");
@@ -84,6 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close database connection
+// Close the database connection
 $conn->close();
 ?>

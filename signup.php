@@ -23,32 +23,35 @@ session_start();
             }
             ?>
 
-            <form action="signup-process.php" method="post">
+            <form action="signup-process.php" method="POST">
+            <div>
                 <label for="userID">User ID:</label>
-                <input type="text" id="userID" name="userID" required 
-                       pattern="[a-zA-Z0-9]+" 
-                       minlength="3" 
-                       maxlength="11" 
-                       title="3-11 characters, letters and numbers only"><br><br>
+                <input type="text" id="userID" name="userID"  required>
+            </div>
 
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required 
-                       maxlength="20"><br><br>
+            <div>
+                <label for="Name">Name:</label>
+                <input type="text" id="Name" name="Name"  maxlength="20" required>
+            </div>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required 
-                       maxlength="50"><br><br>
+            <div>
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" name="Email"  required>
+            </div>
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required 
-                       minlength="8" 
-                       title="Minimum 8 characters"><br><br>
+            <div>
+                <label for="passwordHash">Password:</label>
+                <input type="password" id="passwordHash" name="passwordHash"  required>
+            </div>
 
-                <label for="healthInterest">Health Interests:</label>
-                <textarea id="healthInterest" name="healthInterest" rows="4" cols="50"></textarea><br><br>
+            <div>
+                <label for="healthInterest">Health Interest:</label>
+                <input type="text" id="healthInterest" name="healthInterest" maxlength="255">
+            </div>
 
-                <button type="submit">Sign Up</button>
+            <button type="submit">Sign Up</button>
             </form>
+
             <p>Already have an account? <a href="login.php">Login</a></p>
         </div>
     </div>

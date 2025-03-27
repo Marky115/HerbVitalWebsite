@@ -1,67 +1,44 @@
-<?php>
+<?php
 session_start();
+require ('db_connect.php');
 
-$dbhost = "localhost"; 
-$dbuser = "root"; 
-$dbpass = ""; 
-$dbname = "probjectherb"; 
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitize and validate input
+    $userID = trim($_POST['userID']);
+    $password = $_POST['password'];
 
+    // Prepare SQL statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT userID, passwordHash FROM user WHERE userID = ?");
+    $stmt->bind_param("s", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-if (mysqli_connect_errno()) {
-    
-    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
-
-if (!isset($_POST['username'], $_POST['password'])) {
-    exit('Please fill both the username and password fields!');
-}
-
-// Prepared statement for secure login
-$check_user_query = "SELECT id, password FROM users WHERE username = ?";
-$statement = mysqli_prepare($connection, $check_user_query);
-
-if(!$statement) {
-    die("Error preparing statement: " . mysqli_error($connection));
-}
-
-// Bind the username parameter
-mysqli_stmt_bind_param($statement, 's', $_POST['username']);
-mysqli_stmt_execute($statement);
-
-// Get the result
-$result = mysqli_stmt_get_result($statement);
-
-if(mysqli_num_rows($result) > 0) {
-    // User exists, check password
-    $user = mysqli_fetch_assoc($result);
-    
-    if (password_verify($_POST['password'], $user['password'])) {
-        // Successful login
-        session_regenerate_id();
-        $_SESSION['loggedin'] = TRUE;
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['user_id'] = $user['id'];
+    if ($result->num_rows == 1) {
+        // User found, verify password
+        $user = $result->fetch_assoc();
         
-        // Redirect to home/dashboard
-        header('Location: index.html');
-        exit;
+        if (password_verify($password, $user['passwordHash'])) {
+            // Login successful
+            $_SESSION['loggedin'] = true;
+            $_SESSION['userID'] = $user['userID'];
+            
+            // Redirect to index page
+            header("Location: index.php");
+            exit();
+        } else {
+            // Invalid password
+            $_SESSION['login_error'] = "Invalid username or password";
+            header("Location: login.php");
+            exit();
+        }
     } else {
-        // Wrong password
-        $_SESSION['login_error'] = 'Incorrect username or password';
-        header('Location: login.html');
-        exit;
+        // User not found
+        $_SESSION['login_error'] = "Invalid username or password";
+        header("Location: login.php");
+        exit();
     }
-} else {
-    // User doesn't exist
-    $_SESSION['login_error'] = 'Incorrect username or password';
-    header('Location: login.html');
-    exit;
+
+    $stmt->close();
 }
-
-// Clean up
-mysqli_stmt_close($statement);
-mysqli_close($connection);
-
 ?>

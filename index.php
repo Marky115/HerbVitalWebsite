@@ -15,7 +15,14 @@
                 <ul>
                     <li><a href="index.php">Home</a></li> 
                     <li><a href="browseHerb.php">Browse Herbs</a></li>
-                    <li><a href="login.php">Login/Register</a></li> </ul>
+                    
+                    <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                        <li><a href="saved-list.php">Saved Herbs</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    <?php else: ?>
+                        <li><a href="login.php">Login/Register</a></li>
+                    <?php endif; ?>
+                </ul>
             </nav>
 
             <div id="search-bar-header">
@@ -24,16 +31,16 @@
                     <button type="submit">Search</button>
                 </form>
             </div>
-
+            <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
             <section id="user-section" class="hidden">
-            <h2>Welcome, User!</h2>
-            <div class="user-options">
-                <a href="saved-list.php">Saved Herbs</a>
-                <a href="profile.php">Profile</a>
-                <a href="logout.php">Logout</a>
-            </div>
-        </section>
-
+                <h2>Welcome, <?php echo htmlspecialchars($_SESSION['userID']); ?>!</h2>
+                <div class="user-options">
+                    <a href="saved-list.php">Saved Herbs</a>
+                    <a href="profile.php">Profile</a>
+                    <a href="logout.php">Logout</a>
+                </div>
+            </section>
+            <?php endif; ?>   
         </div>
     </header>
 

@@ -11,9 +11,7 @@ session_start();
 </head>
 <body>
     <div class="container1">
-        <div class="signupImg">
-            <img src="./img/signupImg.png" alt="signupImg">
-        </div>
+      
         <div class="signupContent">
             <h2>Sign Up</h2>
 
@@ -33,7 +31,7 @@ session_start();
                        maxlength="11" 
                        title="3-11 characters, letters and numbers only"><br><br>
 
-                <label for="name">Full Name:</label>
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required 
                        maxlength="20"><br><br>
 

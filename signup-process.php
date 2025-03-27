@@ -14,26 +14,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate inputs
     $errors = [];
 
-    // Validate User ID
-    if (empty($userID) || !preg_match("/^[a-zA-Z0-9]{3,11}$/", $userID)) {
-        $errors[] = "Invalid User ID. Must be 3-11 characters, letters and numbers only.";
+     // Validate User ID (allow letters and numbers)
+     if (empty($userID) || !preg_match("/^[a-zA-Z0-9]+$/", $userID)) {
+        $errors[] = "Invalid User ID. Must contain only letters and numbers.";
     }
 
-    // Validate Name
-    if (empty($Name) || strlen($Name) > 20) {
-        $errors[] = "Invalid Name. Must be 1-20 characters.";
+    // Validate Name (allow any characters, just check length)
+    if (empty($Name) || strlen($Name) <= 20) {
+        $errors[] = "Name must be 1-20 characters long.";
     }
 
-    // Validate Email
-    if (empty($Email) || !filter_var($Email, FILTER_VALIDATE_Email) || strlen($Email) > 50) {
+    // Validate Email (strict email format)
+    if (empty($Email) || !filter_var($Email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid Email Address.";
     }
-
-    // Validate passwordHash
-    if (empty($passwordHash) || strlen($passwordHash) < 8) {
-        $errors[] = "passwordHash must be at least 8 characters long.";
-    }
-
+  
+    
     // Check if userID already exists
     $check_stmt = $conn->prepare("SELECT userID FROM user WHERE userID = ?");
     $check_stmt->bind_param("s", $userID);

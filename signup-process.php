@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordHash = isset($_POST['passwordHash']) ? $_POST['passwordHash'] : '';
     
   
-   $healthInterest = isset($_POST['healthInterest']) ? trim($_POST['healthInterest']) : '';
+    $healthInterest = mysqli_real_escape_string($conn, $_POST["healthInterest"]); // Get the selected concernID
 
     // Collect errors
     $errors = [];

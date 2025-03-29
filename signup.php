@@ -1,5 +1,17 @@
 <?php
 include ('signup-process.php');
+include 'db_connect.php'; // Include your database connection
+
+// Fetch health concerns from the database
+$sql = "SELECT concernID, concernName FROM healthconcerns";
+$result = $conn->query($sql);
+$healthConcerns = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $healthConcerns[$row['concernID']] = $row['concernName'];
+    }
+}
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +58,12 @@ include ('signup-process.php');
 
             <div>
                 <label for="healthInterest">Health Interest:</label>
-                <input type="text" id="healthInterest" name="healthInterest" maxlength="255">
+                <select id="healthInterest" name="healthInterest" required>
+                        <option value="" disabled selected>Select a Health Concern</option>
+                        <?php foreach ($healthConcerns as $concernId => $concernName): ?>
+                            <option value="<?php echo $concernId; ?>"><?php echo $concernName; ?></option>
+                        <?php endforeach; ?>
+                    </select>
             </div>
 
             <button type="submit">Sign Up</button>

@@ -1,3 +1,9 @@
+
+<?php
+session_start();
+include 'db_connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +23,7 @@
                     <li><a href="browseHerb.php">Browse Herbs</a></li>
                     
                     <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-                        <li><a href="saved-list.php">Saved Herbs</a></li>
+                        <li><a href="profile.php">Saved Herbs</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     <?php else: ?>
                         <li><a href="login.php">Login/Register</a></li>
@@ -31,21 +37,14 @@
                     <button type="submit">Search</button>
                 </form>
             </div>
-            <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-            <section id="user-section" class="hidden">
-                <h2>Welcome, <?php echo htmlspecialchars($_SESSION['userID']); ?>!</h2>
-                <div class="user-options">
-                    <a href="saved-list.php">Saved Herbs</a>
-                    <a href="profile.php">Profile</a>
-                    <a href="logout.php">Logout</a>
-                </div>
-            </section>
-            <?php endif; ?>   
+
         </div>
     </header>
 
     <main class="container">
-        
+    <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+        <h2>Welcome, <?php echo htmlspecialchars($_SESSION['userID']); ?>!</h2>
+    <?php endif; ?>
 
         <div id="search-bar-main">
             <form action="search.php" method="get">

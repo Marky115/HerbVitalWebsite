@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #ECF8F2;
+    background-color: #f6f9f0;
 }
 
 .container {
@@ -44,6 +44,7 @@ nav ul li a {
 main {
     padding: 20px 0;
 }
+
 #search-bar-header {
     position: absolute;
     top: 75px;
@@ -60,7 +61,7 @@ main {
 #search-bar-main input[type="text"] {
     padding: 10px 15px; /* Adjust padding */
     border: 1px solid #ccc;
-    border-radius: 1.5rem; /* Rounded corners */
+    border-radius: 5px;
     margin-right: 8px;
     font-size: 16px;
     width: 250px;
@@ -79,7 +80,7 @@ main {
     background-color: #3e8e41; /* Darker green */
     color: white;
     border: none;
-    border-radius: 1.5rem; /* Rounded corners */
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease; /* Smooth background transition */
@@ -97,36 +98,47 @@ main {
 
     #search-bar-main {
         display: flex;
-        width: 100%;
+        width: 100%; /* Take full width of parent (main) */
         flex-direction: column;
         align-items: center;
         margin-top: 2rem;
+        /* Remove padding from #search-bar-main */
+        padding-left: 0;
+        padding-right: 0;
+        box-sizing: border-box;
     }
 
     #search-bar-main input[type="text"] {
         padding: 16px 22px;
-        width: 86.8%;
-        margin-right: 0;
+        /* Make input take full screen width, minus a small margin */
+        width: calc(100% - 2rem); /* Subtract left and right margin */
+        margin-left: 1rem;
+        margin-right: 1rem;
         margin-bottom: 0.5rem;
         font-size: 16px;
-        border-radius: 1.5rem;
-        border: 1px solid #3e8e41; /* Add border for consistency */
+        border-radius: 5px;
+        border: 1px solid #3e8e41;
+        box-sizing: border-box;
     }
 
     #search-bar-main button {
         padding: 16px 22px;
-        width: 100%;
+        /* Make button take full screen width, minus a small margin */
+        width: calc(100% - 2rem); /* Subtract left and right margin */
         margin-top: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
         font-size: 16px;
         color: #000;
-        border-radius: 1.5rem;
-        background-color: #3e8e413e;
+        border-radius: 5px;
+        background-color: #bbdebc;
         border: 1px solid #3e8e41;
-        transition: background-color 0.3s ease; /* Smooth transition */
+        transition: background-color 0.3s ease;
+        box-sizing: border-box;
     }
 
     #search-bar-main button:hover {
-        background-color: #3e8e4150;
+        background-color: #d9f0da;
     }
 }
 
@@ -149,8 +161,11 @@ main {
 }
 .herb-item img {
     max-width: 15rem;
-    height: auto;
+    max-height: 15rem;
+    object-fit: cover;
     border-radius: 20px;
+    object-position: center;
+
 }
 
 .concern-list {
@@ -161,11 +176,17 @@ main {
 
 .concern-list a {
    
-    background-color: #c0f3c0;
+    background-color: #bbdebc;
     padding: 8px 15px;
     text-decoration: none;
     color: #333;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.concern-list a:hover {
+   
+    background-color: #d9f0da;
 }
 
 footer {

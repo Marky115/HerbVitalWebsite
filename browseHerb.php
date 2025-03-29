@@ -75,9 +75,8 @@
             while ($row = $result->fetch_assoc()) {
                 
     
-                echo '<a href="">' . $row['concernName'] . '</a>';
-
-
+                // need to fix
+                echo '<a href="#" healthConcern="' . $row['concernID'] . '">' . $row['concernName'] . '</a>';
                 
             }
 
@@ -87,7 +86,7 @@
             echo '<p>No health concerns found.</p>';
         }
 
-        $sql = "SELECT herbID, herbName, Benefit FROM herb";
+        $sql = "SELECT herbID, herbName, Benefit, imagePath FROM herb";
 
         $result = $conn->query($sql);
 
@@ -97,12 +96,14 @@
 
 
             echo '<section id="featured-herbs-db">'; // Unique ID
-            echo '<h2>Featured Herbs</h2>';
+            echo '<h2>All Herbs</h2>';
             echo '<div class="herb-grid">';
 
             while ($row = $result->fetch_assoc()) {
+                $imagePath = htmlspecialchars($row['imagePath']);
+
                 echo '<div class="herb-item">';
-                echo '<img src="./img/peppermint.jpg" alt="' . $row['herbName'] . '">';
+                echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($row['herbName']) . '">';
                 echo '<h3>' . $row['herbName'] . '</h3>';
                 echo '<p>' . substr($row['Benefit'], 0, 100) . '...</p>';
                 echo '<a href="herbDetails.php?id=' . $row['herbID'] . '">View Details</a>';

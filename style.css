@@ -209,6 +209,7 @@ footer {
   
     padding-top:50px;
     padding-left: 100px;
+   
 
 }
 
@@ -233,3 +234,10 @@ footer {
     margin-right: -200px; 
   }
 
+
+/*Sign up content*/
+.signupContent{
+    flex:1;
+    padding:20px
+    
+}

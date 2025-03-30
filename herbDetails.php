@@ -76,7 +76,7 @@ $conn->close();
             <?php endif; ?>
         </section>
 
-        <section class="herb-details">
+        <section class="herb-details-comments">
             <h2>Comments</h2>
 
         </section>

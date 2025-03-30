@@ -2,6 +2,7 @@
 <?php
 session_start();
 include 'db_connect.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +12,7 @@ include 'db_connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HerbVita - Medicinal Herbal Web App</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -28,15 +30,20 @@ include 'db_connect.php';
                     <?php else: ?>
                         <li><a href="login.php">Login/Register</a></li>
                     <?php endif; ?>
+
+
                 </ul>
 
             </nav>
 
             <div id="search-bar-header">
-                <form action="search.php" method="get">
-                    <input type="text" name="query" placeholder="Search Herbs...">
-                    <button type="submit">Search</button>
+
+                <form>
+                    <input type="text" size="30" onkeyup="showResult(this.value)">
+                    <div id="livesearch"></div>
                 </form>
+
+
             </div>
 
             <section id="user-section" class="hidden">
@@ -52,6 +59,10 @@ include 'db_connect.php';
     </header>
 
     <main class="container">
+        <section id ="search-results">
+        
+
+        </section>
         
 
         <div id="search-bar-main">

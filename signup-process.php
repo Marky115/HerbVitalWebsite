@@ -2,7 +2,6 @@
 session_start();
 require('db_connect.php');
 
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -15,8 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Email = isset($_POST['Email']) ? trim($_POST['Email']) : '';
     $passwordHash = isset($_POST['passwordHash']) ? $_POST['passwordHash'] : '';
     
-  
-    $healthInterest = mysqli_real_escape_string($conn, $_POST["healthInterest"]); // Get the selected concernID
+    // Handle multiple health interests as a comma-separated string
+    if(isset($_POST['healthInterest']) && is_array($_POST['healthInterest'])) {
+        $healthInterestArray = $_POST['healthInterest'];
+        $healthInterest = implode(',', $healthInterestArray);
+    } else {
+        $healthInterest = '';
+    }
+    $healthInterest = mysqli_real_escape_string($conn, $healthInterest);
 
     // Collect errors
     $errors = [];
@@ -25,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Invalid User ID. Must contain only letters and numbers.";
     }
 
-    
     if (empty($Name) || strlen($Name) > 20) {
         $errors[] = "Name must be 1-20 characters long.";
     }
@@ -34,9 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Invalid Email Address.";
     }
     
-   
     if (empty($passwordHash)) {
         $errors[] = "Password cannot be empty.";
+    }
+    
+    if (empty($healthInterest)) {
+        $errors[] = "Please select at least one health interest.";
     }
     
     // Check if userID already exists

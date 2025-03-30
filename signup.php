@@ -11,6 +11,7 @@ if ($result->num_rows > 0) {
         $healthConcerns[$row['concernID']] = $row['concernName'];
     }
 }
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ $conn->close();
     <div class="container1">
       
         <div class="signupContent">
-            <h2>Sign Up</h2>
+            <h2>Welcome to HerbVita</h2>
 
             <?php
             // Display signup error messages
@@ -57,14 +58,27 @@ $conn->close();
             </div>
 
             <div>
-                <label for="healthInterest">Health Interest:</label>
-                <select id="healthInterest" name="healthInterest" required>
-                        <option value="" disabled selected>Select a Health Concern</option>
-                        <?php foreach ($healthConcerns as $concernId => $concernName): ?>
-                            <option value="<?php echo $concernId; ?>"><?php echo $concernName; ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                <label for="healthInterest">Health Interests:</label>
+                <select id="healthInterest" name="healthInterest[]" multiple required size="5">
+                    <?php foreach ($healthConcerns as $concernId => $concernName): ?>
+                    <option value="<?php echo $concernId; ?>"><?php echo $concernName; ?></option>
+                     <?php endforeach; ?>
+                </select>
             </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const select = document.getElementById("healthInterest");
+
+                    select.addEventListener("mousedown", function(e) {
+                        e.preventDefault();
+                        let option = e.target;
+                        if (option.tagName === "OPTION") {
+                            option.selected = !option.selected;
+                        }
+                    });
+                });
+            </script>
 
             <button type="submit">Sign Up</button>
             </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2025 at 08:25 PM
+-- Generation Time: Mar 30, 2025 at 08:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -98,11 +98,11 @@ INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Ben
 (2, 'Ginger', 'Mild stomach upset', 'Tea or capsule', 'Alleviates nausea and aids digestion', 1, 'img/ginger.png'),
 (3, 'Chamomile', 'Drowsiness', 'Tea', 'Relieves indigestion and promotes relaxation', 1, 'img/chamomile.jpg'),
 (4, 'Fennel', 'Rare allergic reactions', 'Tea or raw', 'Reduces bloating and aids digestion', 1, 'img/fennel.jpg'),
-(5, 'Lemon Balm', 'Rare allergic reactions', 'Tea or tincture', 'Helps with bloating and indigestion', 1, ''),
-(6, 'Slippery Elm', 'Nausea (rare)', 'Tea or capsule', 'Soothes the stomach and digestive tract', 1, ''),
-(7, 'Echinacea', 'Mild upset stomach', 'Tea or capsules', 'Boosts the immune system and helps fight infections', 2, ''),
-(8, 'Elderberry', 'Diarrhea (rare)', 'Syrup or capsules', 'Supports the immune system and fights cold/flu symptoms', 2, ''),
-(9, 'Astragalus', 'None reported', 'Capsules or powder', 'Enhances immune function and has anti-inflammatory properties', 2, ''),
+(5, 'Lemon Balm', 'Rare allergic reactions', 'Tea or tincture', 'Helps with bloating and indigestion', 1, 'img/lemonbalm.jpg'),
+(6, 'Slippery Elm', 'Nausea (rare)', 'Tea or capsule', 'Soothes the stomach and digestive tract', 1, 'img/slipperyelm.jpg'),
+(7, 'Echinacea', 'Mild upset stomach', 'Tea or capsules', 'Boosts the immune system and helps fight infections', 2, 'img/echinacea.jpg'),
+(8, 'Elderberry', 'Diarrhea (rare)', 'Syrup or capsules', 'Supports the immune system and fights cold/flu symptoms', 2, 'img/elderberry.jpg'),
+(9, 'Astragalus', 'None reported', 'Capsules or powder', 'Enhances immune function and has anti-inflammatory properties', 2, 'img/astragalus.jpg'),
 (10, 'Garlic', 'Bad breath, body odor', 'Raw or capsules', 'Known to fight infections and support immune health', 2, ''),
 (11, 'Andrographis', 'Stomach upset (rare)', 'Capsules or powder', 'Supports immune health and has antiviral properties', 2, ''),
 (12, 'Reishi Mushroom', 'Dry mouth, dizziness', 'Capsules or extract', 'Boosts immune function and reduces inflammation', 2, ''),

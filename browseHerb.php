@@ -71,19 +71,9 @@ include 'db_connect.php';
             </form>
         </div>
 
-        <!-- <section id="health-concerns">
-            <h2>Explore by Health Concern</h2>
-            <div class="concern-list">
-                <a href="">Digestion</a>
-                <a href="">Immune Support</a>
-            </div>
-        </section> -->
 
         <?php
-        // Include database connection
-        include 'db_connect.php';
 
-        // Query to fetch concern
         $sql = "SELECT concernID, concernName FROM healthconcerns";
 
         $result = $conn->query($sql);
@@ -97,7 +87,7 @@ include 'db_connect.php';
 
             while ($row = $result->fetch_assoc()) {
                 // need to fix
-                echo '<a href="#" healthConcern="' . $row['concernID'] . '">' . $row['concernName'] . '</a>';
+                echo '<a href="#" class="filter-by-concern" data-concern-id="' . $row['concernID'] . '">' . $row['concernName'] . '</a>';
                 
             }
             echo '</div>';
@@ -118,25 +108,23 @@ include 'db_connect.php';
 
         if ($result->num_rows > 0) {
 
-
-
-            echo '<section id="featured-herbs-db">'; // Unique ID
+            echo '<section id="featured-herbs-db">'; 
             echo '<h2>All Herbs</h2>';
             echo '<div class="herb-grid">';
 
             while ($row = $result->fetch_assoc()) {
                 $imagePath = htmlspecialchars($row['imagePath']);
-
-                echo '<div class="herb-item">';
+                $herbDetailsLink = 'herbDetails.php?id=' . $row['herbID'];
+        
+                echo '<div class="herb-item" onclick="window.location.href=\'' . $herbDetailsLink . '\'">';
                 echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($row['herbName']) . '">';
                 echo '<h3>' . $row['herbName'] . '</h3>';
-                echo '<p>' . substr($row['Benefit'], 0, 100) . '...</p>';
-                echo '<a href="herbDetails.php?id=' . $row['herbID'] . '">View Details</a>';
+                echo '<p>' . substr($row['Benefit'], 0, 100) . '.</p>';
+                // Remove the separate "View Details" link
                 echo '</div>';
             }
-
             echo '</div>';
-            echo '</section>';
+            
         } else {
             echo '<p>No herbs found.</p>';
         }

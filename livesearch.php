@@ -18,7 +18,7 @@ $hint = "";
 
 if (strlen($q) > 0) {
     $q = $conn->real_escape_string($q); 
-    // $query = "SELECT herbName FROM herb WHERE herbName LIKE '%" . $q . "%' LIMIT 5"; // Limit to a reasonable number of suggestions
+    // $query = "SELECT herbName FROM herb WHERE herbName LIKE '%" . $q . "%' LIMIT 5";
     $query = "SELECT herbID, herbName FROM herb WHERE LOWER(herbName) LIKE LOWER('" . $q . "%') GROUP BY herbName ORDER BY herbName LIMIT 5";
     
     $result = $conn->query($query); 
@@ -37,7 +37,6 @@ if (strlen($q) > 0) {
     }
 }
 
-// Set output to "no suggestion" if no hint was found
 if ($hint === "") {
     $response = "no suggestion";
 } else {

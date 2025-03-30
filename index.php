@@ -2,6 +2,8 @@
 <?php
 session_start();
 include 'db_connect.php';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +35,9 @@ include 'db_connect.php';
 
             <div id="search-bar-header">
                 <form action="search.php" method="get">
-                    <input type="text" name="query" placeholder="Search Herbs...">
-                    <button type="submit">Search</button>
+                    <input type="text" name="query" size="30" onkeyup="showResult(this.value)">
+                    <span class="search-icon"></span>
+                    <div id="livesearch"></div>
                 </form>
             </div>
 
@@ -48,8 +51,9 @@ include 'db_connect.php';
 
         <div id="search-bar-main">
             <form action="search.php" method="get">
-                <input type="text" name="query" placeholder="Search Herbs...">
-                <button type="submit">Search</button>
+                <input type="text" name="query" placeholder="Search Herbs..." size="30" onkeyup="showResultMain(this.value)">
+                <span class="search-icon"></span>
+                <div id="livesearch-main"></div>
             </form>
         </div>
 

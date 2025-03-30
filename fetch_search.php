@@ -4,7 +4,7 @@ include 'db_connect.php';
 if (isset($_GET['query']) && !empty($_GET['query'])) {
     $searchQuery = $mysqli->real_escape_string($_GET['query']);
 
-    $query = "SELECT herbName FROM herb WHERE herbName LIKE '%" . $searchQuery . "%' LIMIT 5"; // Limit the number of suggestions
+    $query = "SELECT herbName FROM herb WHERE herbName LIKE '%" . $searchQuery . "%' LIMIT 5"; // only suggest 5 and not the whole list
     $result = $mysqli->query($query);
 
     $suggestions = array();

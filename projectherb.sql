@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2025 at 12:35 AM
+-- Generation Time: Mar 31, 2025 at 01:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -85,7 +85,7 @@ CREATE TABLE `herb` (
   `sideEffect` varchar(255) NOT NULL,
   `recommendedUsage` text NOT NULL,
   `Benefit` text NOT NULL,
-  `heatlhConcerns` int(11) NOT NULL,
+  `healthConcerns` int(11) NOT NULL,
   `imagePath` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -93,7 +93,7 @@ CREATE TABLE `herb` (
 -- Dumping data for table `herb`
 --
 
-INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Benefit`, `heatlhConcerns`, `imagePath`) VALUES
+INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Benefit`, `healthConcerns`, `imagePath`) VALUES
 (1, 'Peppermint', 'Possible heartburn', 'Tea or capsules', 'Helps with indigestion and bloating', 1, 'img/peppermint.jpg'),
 (2, 'Ginger', 'Mild stomach upset', 'Tea or capsule', 'Alleviates nausea and aids digestion', 1, 'img/ginger.png'),
 (3, 'Chamomile', 'Drowsiness', 'Tea', 'Relieves indigestion and promotes relaxation', 1, 'img/chamomile.jpg'),
@@ -209,7 +209,7 @@ ALTER TABLE `healthconcerns`
 --
 ALTER TABLE `herb`
   ADD PRIMARY KEY (`herbID`),
-  ADD KEY `healthConcerns` (`heatlhConcerns`);
+  ADD KEY `healthConcerns` (`healthConcerns`);
 
 --
 -- Indexes for table `savedlist`

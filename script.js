@@ -8,6 +8,41 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('user-section').classList.remove('hidden');
     }
 
+
+    const concernLinks = document.querySelectorAll('.filter-by-concern');
+    const featuredHerbsSection = document.getElementById('featured-herbs-db'); 
+
+    concernLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); 
+
+            const concernId = this.dataset.concernId;
+
+            if (concernId) {
+                fetch('herbs_by_concern.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'concern_id=' + concernId
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Update the content of the featured herbs section with the filtered results
+                    if (featuredHerbsSection) {
+                        featuredHerbsSection.innerHTML = '<h2>Herbs for ' + this.textContent + '</h2>' + data;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching herbs:', error);
+                    if (featuredHerbsSection) {
+                        featuredHerbsSection.innerHTML = '<p>Error loading herbs.</p>';
+                    }
+                });
+            }
+        });
+    });
+
     
     
   });
@@ -65,3 +100,5 @@ function goToHerbPage(herbId) {
             document.getElementById("livesearch-main").innerHTML = "";
             document.getElementById("livesearch-main").style.border = "0px";
         }
+
+        

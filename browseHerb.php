@@ -37,13 +37,11 @@ include 'db_connect.php';
             </nav>
 
             <div id="search-bar-header">
-
-                <form>
-                    <input type="text" size="30" onkeyup="showResult(this.value)">
+                <form action="search.php" method="get">
+                    <input type="text" name="query" size="30" onkeyup="showResult(this.value)">
+                    <span class="search-icon"></span>
                     <div id="livesearch"></div>
                 </form>
-
-
             </div>
 
             <section id="user-section" class="hidden">
@@ -67,8 +65,9 @@ include 'db_connect.php';
 
         <div id="search-bar-main">
             <form action="search.php" method="get">
-                <input type="text" name="query" placeholder="Search Herbs...">
-                <button type="submit">Search</button>
+                <input type="text" name="query" placeholder="Search Herbs..." size="30" onkeyup="showResultMain(this.value)">
+                <span class="search-icon"></span>
+                <div id="livesearch-main"></div>
             </form>
         </div>
 
@@ -97,13 +96,10 @@ include 'db_connect.php';
             echo '<div class="concern-list">';
 
             while ($row = $result->fetch_assoc()) {
-                
-    
                 // need to fix
                 echo '<a href="#" healthConcern="' . $row['concernID'] . '">' . $row['concernName'] . '</a>';
                 
             }
-
             echo '</div>';
             echo '</section>';
         } else {
@@ -116,7 +112,6 @@ include 'db_connect.php';
         -- for our database, we have multiple herb id for the same herb because one herb can target differnt health aspects, when we use group by herbName it won't show duplicates
         GROUP BY herbName";
 
-        
 
         $result = $conn->query($sql);
 

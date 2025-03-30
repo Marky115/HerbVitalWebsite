@@ -18,15 +18,20 @@ $hint = "";
 
 if (strlen($q) > 0) {
     $q = $conn->real_escape_string($q); 
-    $query = "SELECT herbName FROM herb WHERE herbName LIKE '%" . $q . "%' LIMIT 5"; // Limit to a reasonable number of suggestions
+    // $query = "SELECT herbName FROM herb WHERE herbName LIKE '%" . $q . "%' LIMIT 5"; // Limit to a reasonable number of suggestions
+    $query = "SELECT herbID, herbName FROM herb WHERE LOWER(herbName) LIKE LOWER('" . $q . "%') GROUP BY herbName ORDER BY herbName LIMIT 5";
+    
     $result = $conn->query($query); 
 
     if ($result->num_rows > 0) {
+
+        
         while ($row = $result->fetch_assoc()) {
+
             if ($hint === "") {
-                $hint = "<div onclick='selectSuggestion(\"" . htmlspecialchars($row['herbName']) . "\")'>" . htmlspecialchars($row['herbName']) . "</div>";
+                $hint = "<div onclick='goToHerbPage(\"" . $row['herbID'] . "\")'>" . htmlspecialchars($row['herbName']) . "</div>";
             } else {
-                $hint .= "<br /><div onclick='selectSuggestion(\"" . htmlspecialchars($row['herbName']) . "\")'>" . htmlspecialchars($row['herbName']) . "</div>";
+                $hint .= "<br /><div onclick='goToHerbPage(\"" . $row['herbID'] . "\")'>" . htmlspecialchars($row['herbName']) . "</div>";
             }
         }
     }

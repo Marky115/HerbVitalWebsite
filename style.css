@@ -45,7 +45,60 @@ main {
     padding: 20px 0;
 }
 
+/* search bar styling - Common styles for both header and main */
+#search-bar-header form,
+#search-bar-main form {
+    position: relative;
+}
 
+#search-bar-header input[type="text"],
+#search-bar-main input[type="text"] {
+    padding-right: 35px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#search-bar-header input[type="text"]:focus,
+#search-bar-main input[type="text"]:focus {
+    outline: none;
+    border-color: #3e8e41;
+}
+
+#search-bar-header button,
+#search-bar-main button {
+    padding: 10px 20px;
+    background-color: #3e8e41;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#search-bar-header button:hover,
+#search-bar-main button:hover {
+    background-color: #367c39;
+}
+
+.search-icon {
+    position: absolute;
+    top: 45%;
+    right: 30px; /* Adjust distance from the right */
+    transform: translateY(-50%); /* Vertically center the icon */
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+    background-image: url('img/search.png'); /* Replace with your icon image path */
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.6; /* Adjust icon opacity */
+}
+
+/* search bar styling - Specific to header */
 #search-bar-header {
     position: absolute;
     top: 75px;
@@ -54,42 +107,13 @@ main {
     align-items: center;
 }
 
+#search-bar-header input[type="text"] {
+    width: 250px;
+}
+
+/* search bar styling - Specific to main */
 #search-bar-main {
     display: none;
-}
-
-#search-bar-header input[type="text"],
-#search-bar-main input[type="text"] {
-    padding: 10px 15px; /* Adjust padding */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 8px;
-    font-size: 16px;
-    width: 250px;
-    transition: border-color 0.3s ease; /* Smooth border transition */
-}
-
-#search-bar-header input[type="text"]:focus,
-#search-bar-main input[type="text"]:focus {
-    outline: none;
-    border-color: #3e8e41; /* Highlight border on focus */
-}
-
-#search-bar-header button,
-#search-bar-main button {
-    padding: 10px 20px; /* Adjust padding */
-    background-color: #3e8e41; /* Darker green */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease; /* Smooth background transition */
-}
-
-#search-bar-header button:hover,
-#search-bar-main button:hover {
-    background-color: #367c39; /* Slightly darker green */
 }
 
 @media (max-width: 850px) {
@@ -99,20 +123,19 @@ main {
 
     #search-bar-main {
         display: flex;
-        width: 100%; /* Take full width of parent (main) */
+        width: 100%;
         flex-direction: column;
         align-items: center;
         margin-top: 2rem;
-        /* Remove padding from #search-bar-main */
         padding-left: 0;
         padding-right: 0;
         box-sizing: border-box;
+        min-height: 60px;
     }
 
     #search-bar-main input[type="text"] {
         padding: 16px 22px;
-        /* Make input take full screen width, minus a small margin */
-        width: calc(100% - 2rem); /* Subtract left and right margin */
+        width: calc(100% - 2rem);
         margin-left: 1rem;
         margin-right: 1rem;
         margin-bottom: 0.5rem;
@@ -124,8 +147,7 @@ main {
 
     #search-bar-main button {
         padding: 16px 22px;
-        /* Make button take full screen width, minus a small margin */
-        width: calc(100% - 2rem); /* Subtract left and right margin */
+        width: calc(100% - 2rem);
         margin-top: 0;
         margin-left: 1rem;
         margin-right: 1rem;
@@ -142,6 +164,52 @@ main {
         background-color: #d9f0da;
     }
 }
+
+/* search results - Common styles */
+#livesearch,
+#livesearch-main {
+    position: absolute;
+    top: 100%; /* Position below the input */
+    left: 0;
+    background-color: white;
+    border: 1px solid #A5ACB2;
+    border-top: none;
+    z-index: 10;
+    box-sizing: border-box;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#livesearch div,
+#livesearch-main div {
+    padding: 0px 8px;
+    cursor: pointer;
+}
+
+/* Style for hover effect on suggestion items in both */
+#livesearch div:hover,
+#livesearch-main div:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style for the "no suggestion" message in both */
+#livesearch p,
+#livesearch-main p {
+    padding: 8px;
+    margin: 0;
+    color: #777;
+}
+
+/* search results - Specific to header */
+#livesearch {
+    width: 281px;
+}
+
+#livesearch-main {
+    width: 100%; 
+    max-height: 300px;
+}
+
 
 
 .herb-grid {

@@ -78,7 +78,15 @@ $conn->close();
 
         <section class="herb-details-comments">
             <h2>Comments</h2>
-
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                <form action="submit-comment.php" method="POST">
+                    <textarea name="comment" rows="5" cols="50" required></textarea>
+                    <input type="hidden" name="herb_id" value="<?php echo htmlspecialchars($herbId); ?>">
+                    <button type="submit">Post Comment</button>
+                </form>
+            <?php else: ?>
+                <p>You must be logged in to comment. <a href="login.php">Login</a> or <a href="signup.php">Sign up</a>.</p>
+            <?php endif; ?>
         </section>
 
 

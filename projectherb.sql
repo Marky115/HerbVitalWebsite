@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2025 at 08:21 PM
+-- Generation Time: Mar 30, 2025 at 08:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,58 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectherb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `commentID` int(11) NOT NULL,
+  `herbID` int(11) NOT NULL,
+  `userID` varchar(11) NOT NULL,
+  `commentText` text NOT NULL,
+  `timeAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `featuredherb`
+--
+
+CREATE TABLE `featuredherb` (
+  `featuredID` varchar(11) NOT NULL,
+  `Date` date NOT NULL,
+  `herbID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `healthconcerns`
+--
+
+CREATE TABLE `healthconcerns` (
+  `concernID` int(11) NOT NULL,
+  `concernName` varchar(50) NOT NULL,
+  `herbID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `healthconcerns`
+--
+
+INSERT INTO `healthconcerns` (`concernID`, `concernName`, `herbID`) VALUES
+(1, 'Digestive Issues', 0),
+(2, 'Immune Support', 0),
+(3, 'Stress and Anxiety', 0),
+(4, 'Inflammation and Pain', 0),
+(5, 'Skin Health', 0),
+(6, 'Sleep Disorders', 0),
+(7, 'Cardiovascular Health', 0),
+(8, 'Detoxification', 0);
 
 -- --------------------------------------------------------
 
@@ -91,9 +143,65 @@ INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Ben
 (47, 'Burdock Root', 'Mild allergic reactions', 'Cooked (as food), tea', 'Helps cleanse the liver and detoxify the body', 8, ''),
 (48, 'Schisandra', 'Skin rash, heartburn', 'Powder, capsules', 'Supports liver detox and regeneration with antioxidant properties', 8, '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `savedlist`
+--
+
+CREATE TABLE `savedlist` (
+  `savedListID` int(11) NOT NULL,
+  `userID` varchar(11) NOT NULL,
+  `herbID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `userID` varchar(11) NOT NULL,
+  `Name` varchar(20) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `passwordHash` varchar(255) NOT NULL,
+  `healthInterest` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
+('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0),
+('wennis1', 'wener', 'haha@haha.ca', '$2y$10$BXuLnC3LKKgl7ieAun6.JuMeYr63tszU4NalOCV6UewSsqlT2hA4G', 2);
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`commentID`),
+  ADD KEY `herbID` (`herbID`),
+  ADD KEY `userID` (`userID`);
+
+--
+-- Indexes for table `featuredherb`
+--
+ALTER TABLE `featuredherb`
+  ADD PRIMARY KEY (`featuredID`),
+  ADD KEY `herbID` (`herbID`);
+
+--
+-- Indexes for table `healthconcerns`
+--
+ALTER TABLE `healthconcerns`
+  ADD PRIMARY KEY (`concernID`),
+  ADD KEY `herbID` (`herbID`);
 
 --
 -- Indexes for table `herb`
@@ -101,6 +209,21 @@ INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Ben
 ALTER TABLE `herb`
   ADD PRIMARY KEY (`herbID`),
   ADD KEY `healthConcerns` (`heatlhConcerns`);
+
+--
+-- Indexes for table `savedlist`
+--
+ALTER TABLE `savedlist`
+  ADD PRIMARY KEY (`savedListID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `herbID` (`herbID`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userID`),
+  ADD UNIQUE KEY `healthInterest` (`healthInterest`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

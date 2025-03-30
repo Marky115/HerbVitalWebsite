@@ -99,7 +99,13 @@ include 'db_connect.php';
             echo '<p>No health concerns found.</p>';
         }
 
-        $sql = "SELECT herbID, herbName, Benefit, imagePath FROM herb";
+        $sql = "SELECT herbID, herbName, Benefit, imagePath
+        FROM herb
+
+        -- for our database, we have multiple herb id for the same herb because one herb can target differnt health aspects, when we use group by herbName it won't show duplicates
+        GROUP BY herbName";
+
+        
 
         $result = $conn->query($sql);
 

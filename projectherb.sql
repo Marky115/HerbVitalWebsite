@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2025 at 12:32 AM
+-- Generation Time: Mar 31, 2025 at 12:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -166,16 +166,17 @@ CREATE TABLE `user` (
   `Name` varchar(20) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `passwordHash` varchar(255) NOT NULL,
-  `healthInterest` int(11) NOT NULL
+  `healthInterest` int(11) NOT NULL,
+  `CommentID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
-('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0),
-('wennis1', 'wener', 'haha@haha.ca', '$2y$10$BXuLnC3LKKgl7ieAun6.JuMeYr63tszU4NalOCV6UewSsqlT2hA4G', 2);
+INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`, `CommentID`) VALUES
+('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0, 0),
+('wennis1', 'wener', 'haha@haha.ca', '$2y$10$BXuLnC3LKKgl7ieAun6.JuMeYr63tszU4NalOCV6UewSsqlT2hA4G', 2, 0);
 
 --
 -- Indexes for dumped tables
@@ -223,7 +224,8 @@ ALTER TABLE `savedlist`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`userID`),
-  ADD UNIQUE KEY `healthInterest` (`healthInterest`);
+  ADD UNIQUE KEY `healthInterest` (`healthInterest`),
+  ADD KEY `CommentID` (`CommentID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

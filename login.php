@@ -9,7 +9,7 @@ include ('login-process.php');
     <title>Login - HerbVita</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class='login-body'>
     <div class="container1">
         <div class="loginImg">
             <img src="./img/loginImg.png" alt="loginImg">
@@ -31,14 +31,14 @@ include ('login-process.php');
             }
             ?>
 
-            <form action="login-process.php" method="post">
+            <form action="login-process.php" method="post" class='loginForm'>
                 <label for="userID">User ID:</label>
                 <input type="text" id="userID" name="userID" required><br><br>
     
                 <label for="passwordHash">Password:</label>
                 <input type="password" id="passwordHash" name="passwordHash" required><br><br>
     
-                <button type="submit">Login</button>
+                <button type="submit" class='loginBtn'>Login</button>
             </form>
             <p>Don't have an account? <a href="signup.php">Sign up</a></p>
         </div>

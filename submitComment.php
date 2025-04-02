@@ -19,7 +19,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         $stmt->bind_param("iss", $herbId, $userId, $comment);
 
         if ($stmt->execute()) {
-            // On success, redirect back to the herb details page
+            
             header("Location: herbDetails.php?id=" . $herbId);
             exit();
         } else {

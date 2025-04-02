@@ -48,14 +48,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             }
             $insertStmt->close();
         } else {
-            // or display the error message
+           
             $saveMessage = "Herb is already in your saved list.";
         }
         $checkStmt->close();
 
     }
 } else {
-    // Redirect if invalid 
+  
     header("Location: browseHerb.php");
     exit();
 }
@@ -153,9 +153,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             echo "</div>";
         } 
 
-        // else {
-        //     echo "<p>No comments yet. Be the first to comment!</p>";
-        // }
         $stmt_comments->close();
         ?>
         

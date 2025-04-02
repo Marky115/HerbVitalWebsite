@@ -2,7 +2,7 @@
 include ('signup-process.php');
 include 'db_connect.php'; // Include your database connection
 
-// Fetch health concerns from the database
+
 $sql = "SELECT concernID, concernName FROM healthconcerns";
 $result = $conn->query($sql);
 $healthConcerns = [];

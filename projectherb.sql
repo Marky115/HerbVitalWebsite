@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2025 at 01:04 AM
+-- Generation Time: Apr 02, 2025 at 07:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -150,10 +150,18 @@ INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Ben
 --
 
 CREATE TABLE `savedlist` (
-  `savedListID` int(11) NOT NULL,
   `userID` varchar(11) NOT NULL,
   `herbID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `savedlist`
+--
+
+INSERT INTO `savedlist` (`userID`, `herbID`) VALUES
+('0', 11),
+('0', 48),
+('0', 45);
 
 -- --------------------------------------------------------
 
@@ -215,7 +223,6 @@ ALTER TABLE `herb`
 -- Indexes for table `savedlist`
 --
 ALTER TABLE `savedlist`
-  ADD PRIMARY KEY (`savedListID`),
   ADD KEY `userID` (`userID`),
   ADD KEY `herbID` (`herbID`);
 

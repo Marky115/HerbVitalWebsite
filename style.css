@@ -88,17 +88,17 @@ main {
 .search-icon {
     position: absolute;
     top: 45%;
-    right: 30px; /* Adjust distance from the right */
+    right: 30px; 
     transform: translateY(-50%); /* Vertically center the icon */
-    width: 20px; /* Adjust icon size */
+    width: 20px;
     height: 20px;
-    background-image: url('img/search.png'); /* Replace with your icon image path */
+    background-image: url('img/search.png');
     background-repeat: no-repeat;
     background-size: contain;
-    opacity: 0.6; /* Adjust icon opacity */
+    opacity: 0.6; 
 }
 
-/* search bar styling - Specific to header */
+/* search bar styling -header */
 #search-bar-header {
     position: absolute;
     top: 75px;
@@ -111,7 +111,7 @@ main {
     width: 250px;
 }
 
-/* search bar styling - Specific to main */
+/* search bar styling -main */
 #search-bar-main {
     display: none;
 }
@@ -165,11 +165,11 @@ main {
     }
 }
 
-/* search results - Common styles */
+/* search result*/
 #livesearch,
 #livesearch-main {
     position: absolute;
-    top: 100%; /* Position below the input */
+    top: 100%;
     left: 0;
     background-color: white;
     border: 1px solid #A5ACB2;
@@ -192,7 +192,6 @@ main {
     background-color: #f0f0f0;
 }
 
-/* Style for the "no suggestion" message in both */
 #livesearch p,
 #livesearch-main p {
     padding: 8px;
@@ -200,7 +199,7 @@ main {
     color: #777;
 }
 
-/* search results - Specific to header */
+/* search results -  header */
 #livesearch {
     width: 281px;
 }
@@ -219,6 +218,7 @@ main {
 }
 
 .herb-item {
+    
     border: 1px solid #ddd;
     border-radius: 20px;
     padding: 15px;
@@ -343,7 +343,6 @@ footer {
     background: #218838;
 }
 
-/* 🔹 Responsive Adjustments 🔹 */
 @media screen and (max-width: 1024px) {
     .container1 {
         flex-direction: column;
@@ -495,7 +494,6 @@ footer {
 
 /*  Login Link */
 
-
 .login-link {
     text-align: center;
     margin-top: 10px;
@@ -535,4 +533,28 @@ footer {
     max-width: 25rem;
     max-height: 25rem;
     border-radius: 20px;
+}
+
+.saveherb {
+    padding: 10px 20px;
+    background-color: #3e8e41;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+}
+
+.saveherb:hover{
+    background-color: #367c39;
+}
+
+.saved-herb-item img{
+
+    width: 15rem;
+    height: 15rem;
+    border-radius: 20px;
+
 }

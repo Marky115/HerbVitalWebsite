@@ -4,18 +4,18 @@ require ('db_connect.php');
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and validate input
+    // confirm input
     $userID = trim($_POST['userID']);
     $passwordHash = $_POST['passwordHash'];
 
-    // Prepare SQL statement to prevent SQL injection
+    // Prepare SQL thingy
     $stmt = $conn->prepare("SELECT userID, passwordHash FROM user WHERE userID = ?");
     $stmt->bind_param("s", $userID);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
-        // User found, verify passwordHash
+        // User found, verify the password
         $user = $result->fetch_assoc();
         
         if (password_verify($passwordHash, $user['passwordHash'])) {
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php");
             exit();
         } else {
-            // Invalid passwordHash
+            // password error
             $_SESSION['login_error'] = "Invalid username or password";
             header("Location: login.php");
             exit();

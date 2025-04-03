@@ -132,8 +132,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         
         <?php
       
-        $sql_comments = "SELECT c.`commentText`, u.`Name` 
-                        FROM `comment` c 
+        $sql_comments = "SELECT c.`commentText`, u.`Name`, c.`timeAdded` 
+                        FROM `comments` c 
                         JOIN `user` u ON c.`userID` = u.`userID` 
                         WHERE c.`herbID` = ?";
         $stmt_comments = $conn->prepare($sql_comments);
@@ -145,14 +145,17 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             echo "<div class='comments-list'>";
             while ($row = $result_comments->fetch_assoc()) {
                 echo "<div class='comment-box'>";
-                echo "<p><strong>" . htmlspecialchars($row['Name']) . ":</strong></p>";
+                echo "<p><strong>" . htmlspecialchars($row['Name']) . "</strong> • " . 
+                     date('F j, Y \a\t g:i a', strtotime($row['timeAdded'])) . "</p>";
                 echo "<p>" . htmlspecialchars($row['commentText']) . "</p>";
                 echo "</div>";
             }
             echo "</div>";
-        } else {
-            echo "<p>No comments yet. Be the first to comment!</p>";
-        }
+        } 
+
+        // else {
+        //     echo "<p>No comments yet. Be the first to comment!</p>";
+        // }
         $stmt_comments->close();
         ?>
         

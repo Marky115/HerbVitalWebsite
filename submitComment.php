@@ -12,7 +12,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         $comment = trim($_POST['comment']);
 
         // Prepares the SQL to insert the comment - using exact column names from your database
-        $sql = "INSERT INTO `comment` (herbID, userID, commentText) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO `comments` (herbID, userID, commentText) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         
        

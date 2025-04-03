@@ -5,20 +5,22 @@ include 'db_connect.php';
 // Ensure the user is logged in
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     // Validate the POST request has the required fields and comment is not empty
-    if (isset($_POST['comment'], $_POST['herbID']) && !empty(trim($_POST['comment']))) {
-        // Use the same session variable key as set in the login process
+    if (isset($_POST['comment'], $_POST['herb_id']) && !empty(trim($_POST['comment']))) {
+        // Get the user ID from session
         $userId = $_SESSION['userID'];  
-        $herbID = (int) $_POST['herbID'];  // Cast to integer for safety
-        $comment = htmlspecialchars(trim($_POST['comment']));
+        $herbId = (int) $_POST['herb_id']; 
+        $comment = trim($_POST['comment']);
 
-        // Prepare the SQL to insert the comment
-        $sql = "INSERT INTO comments (user_id, herb_id, content) VALUES (?, ?, ?)";
+        // Prepares the SQL to insert the comment - using exact column names from your database
+        $sql = "INSERT INTO `comment` (herbID, userID, commentText) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iis", $userId, $herbID, $comment);
+        
+       
+        $stmt->bind_param("iss", $herbId, $userId, $comment);
 
         if ($stmt->execute()) {
             // On success, redirect back to the herb details page
-            header("Location: herbDetails.php?id=" . $herbID);
+            header("Location: herbDetails.php?id=" . $herbId);
             exit();
         } else {
             echo "Error posting comment: " . $stmt->error;

@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include 'db_connect.php';
 
 // join the herb table with the saved list to show the names and images as well
@@ -10,7 +11,7 @@ function getSavedHerbs($conn, $userId) {
             JOIN herb h ON sli.herbID = h.herbID
             WHERE sli.userID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $userId);
+    $stmt->bind_param("s", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);

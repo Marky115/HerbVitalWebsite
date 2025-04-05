@@ -32,7 +32,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         // Check if the herb is already saved
         $checkSql = "SELECT * FROM savedlist WHERE userID = ? AND herbID = ?";
         $checkStmt = $conn->prepare($checkSql);
-        $checkStmt->bind_param("ii", $userId, $herbId);
+        $checkStmt->bind_param("si", $userId, $herbId);
         $checkStmt->execute();
         $checkResult = $checkStmt->get_result();
 
@@ -40,7 +40,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             // Save the herb
             $insertSql = "INSERT INTO savedlist (userID, herbID) VALUES (?, ?)";
             $insertStmt = $conn->prepare($insertSql);
-            $insertStmt->bind_param("ii", $userId, $herbId);
+            $insertStmt->bind_param("si", $userId, $herbId);
             if ($insertStmt->execute()) {
                 $saveMessage = "Herb saved to your list!";
             } else {

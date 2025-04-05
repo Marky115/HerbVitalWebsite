@@ -1,6 +1,6 @@
 <?php
 session_start();
-require ('db_connect.php');
+include ('db_connect.php');
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -8,7 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userID = trim($_POST['userID']);
     $passwordHash = $_POST['passwordHash'];
 
-    // Prepare SQL thingy
+
+    // Preparing SQL
     $stmt = $conn->prepare("SELECT userID, passwordHash FROM user WHERE userID = ?");
     $stmt->bind_param("s", $userID);
     $stmt->execute();

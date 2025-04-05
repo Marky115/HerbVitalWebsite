@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2025 at 07:42 AM
+-- Generation Time: Apr 05, 2025 at 04:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,20 @@ CREATE TABLE `comments` (
   `commentText` text NOT NULL,
   `timeAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdded`) VALUES
+(15, 25, 'wennis', 'hello', '2025-04-02 20:09:19'),
+(16, 25, 'wennis', 'bye', '2025-04-02 20:09:22'),
+(17, 25, 'tehe1', 'hi', '2025-04-02 20:10:21'),
+(18, 41, 'tehe1', 'hello', '2025-04-02 20:11:09'),
+(19, 11, 'wennis', 'thats a you problem', '2025-04-05 02:55:40'),
+(20, 11, 'wennis', 'yeah im talking to you', '2025-04-05 02:55:48'),
+(21, 11, 'tehe1', 'thats what i thought', '2025-04-05 02:56:09'),
+(22, 48, 'tehe1', 'testing', '2025-04-05 02:56:41');
 
 -- --------------------------------------------------------
 
@@ -161,7 +175,9 @@ CREATE TABLE `savedlist` (
 INSERT INTO `savedlist` (`userID`, `herbID`) VALUES
 ('0', 11),
 ('0', 48),
-('0', 45);
+('0', 45),
+('0', 25),
+('0', 13);
 
 -- --------------------------------------------------------
 
@@ -183,8 +199,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`, `CommentID`) VALUES
-('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0, 0),
-('wennis1', 'wener', 'haha@haha.ca', '$2y$10$BXuLnC3LKKgl7ieAun6.JuMeYr63tszU4NalOCV6UewSsqlT2hA4G', 2, 0);
+('rash1', 'rashy', 'rashy@gmail.com', '$2y$10$rebZuRZiEtlym8eoA8a3RuwyiyYZWLkS13aD3KkY1ym.8ODz9VTGu', 2, 0),
+('tehe1', 'rash', 'rash@gmaill.com', '$2y$10$Xe0g6fGohUXUdpb6UyeNDuQ5sY.pW1TGPwLy27i83gP9flIoCrey6', 1, 0),
+('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -233,6 +250,16 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`userID`),
   ADD UNIQUE KEY `healthInterest` (`healthInterest`),
   ADD KEY `CommentID` (`CommentID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2025 at 04:58 AM
+-- Generation Time: Apr 05, 2025 at 05:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -47,7 +47,10 @@ INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdd
 (19, 11, 'wennis', 'thats a you problem', '2025-04-05 02:55:40'),
 (20, 11, 'wennis', 'yeah im talking to you', '2025-04-05 02:55:48'),
 (21, 11, 'tehe1', 'thats what i thought', '2025-04-05 02:56:09'),
-(22, 48, 'tehe1', 'testing', '2025-04-05 02:56:41');
+(22, 48, 'tehe1', 'testing', '2025-04-05 02:56:41'),
+(23, 25, 'wennis', 'sup', '2025-04-05 03:07:44'),
+(24, 45, 'wennis', 'taste bad', '2025-04-05 03:08:04'),
+(25, 13, 'wennis', 'its too bitter for me turns my tongue yellow', '2025-04-05 03:08:25');
 
 -- --------------------------------------------------------
 
@@ -69,23 +72,22 @@ CREATE TABLE `featuredherb` (
 
 CREATE TABLE `healthconcerns` (
   `concernID` int(11) NOT NULL,
-  `concernName` varchar(50) NOT NULL,
-  `herbID` int(11) NOT NULL
+  `concernName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `healthconcerns`
 --
 
-INSERT INTO `healthconcerns` (`concernID`, `concernName`, `herbID`) VALUES
-(1, 'Digestive Issues', 0),
-(2, 'Immune Support', 0),
-(3, 'Stress and Anxiety', 0),
-(4, 'Inflammation and Pain', 0),
-(5, 'Skin Health', 0),
-(6, 'Sleep Disorders', 0),
-(7, 'Cardiovascular Health', 0),
-(8, 'Detoxification', 0);
+INSERT INTO `healthconcerns` (`concernID`, `concernName`) VALUES
+(1, 'Digestive Issues'),
+(2, 'Immune Support'),
+(3, 'Stress and Anxiety'),
+(4, 'Inflammation and Pain'),
+(5, 'Skin Health'),
+(6, 'Sleep Disorders'),
+(7, 'Cardiovascular Health'),
+(8, 'Detoxification');
 
 -- --------------------------------------------------------
 
@@ -190,18 +192,18 @@ CREATE TABLE `user` (
   `Name` varchar(20) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `passwordHash` varchar(255) NOT NULL,
-  `healthInterest` int(11) NOT NULL,
-  `CommentID` int(11) NOT NULL
+  `healthInterest` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`, `CommentID`) VALUES
-('rash1', 'rashy', 'rashy@gmail.com', '$2y$10$rebZuRZiEtlym8eoA8a3RuwyiyYZWLkS13aD3KkY1ym.8ODz9VTGu', 2, 0),
-('tehe1', 'rash', 'rash@gmaill.com', '$2y$10$Xe0g6fGohUXUdpb6UyeNDuQ5sY.pW1TGPwLy27i83gP9flIoCrey6', 1, 0),
-('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0, 0);
+INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
+('rash1', 'rashy', 'rashy@gmail.com', '$2y$10$rebZuRZiEtlym8eoA8a3RuwyiyYZWLkS13aD3KkY1ym.8ODz9VTGu', 2),
+('tehe1', 'rash', 'rash@gmaill.com', '$2y$10$Xe0g6fGohUXUdpb6UyeNDuQ5sY.pW1TGPwLy27i83gP9flIoCrey6', 1),
+('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0),
+('wenny', 'wenny', 'hihi@haha.com', '$2y$10$5F2/dRTCjUToDXd487jxuuCTMQL4m.mM5owhBR0oG5r18k/dZ8x.m', 8);
 
 --
 -- Indexes for dumped tables
@@ -226,8 +228,7 @@ ALTER TABLE `featuredherb`
 -- Indexes for table `healthconcerns`
 --
 ALTER TABLE `healthconcerns`
-  ADD PRIMARY KEY (`concernID`),
-  ADD KEY `herbID` (`herbID`);
+  ADD PRIMARY KEY (`concernID`);
 
 --
 -- Indexes for table `herb`
@@ -248,8 +249,7 @@ ALTER TABLE `savedlist`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`userID`),
-  ADD UNIQUE KEY `healthInterest` (`healthInterest`),
-  ADD KEY `CommentID` (`CommentID`);
+  ADD UNIQUE KEY `healthInterest` (`healthInterest`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -259,7 +259,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

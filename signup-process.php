@@ -14,14 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Email = isset($_POST['Email']) ? trim($_POST['Email']) : '';
     $passwordHash = isset($_POST['passwordHash']) ? $_POST['passwordHash'] : '';
     
-    // Handle multiple health interests as a comma-separated string
-    if(isset($_POST['healthInterest']) && is_array($_POST['healthInterest'])) {
-        $healthInterestArray = $_POST['healthInterest'];
-        $healthInterest = implode(',', $healthInterestArray);
-    } else {
-        $healthInterest = '';
-    }
-    $healthInterest = mysqli_real_escape_string($conn, $healthInterest);
+    // Handle multiple health interests as comma-separated string
+    $healthInterestArray = isset($_POST['healthInterest']) ? $_POST['healthInterest'] : [];
+    $healthInterest = is_array($healthInterestArray) ? implode(',', $healthInterestArray) : '';
+
+    // Check if health interests were selected
+    $healthInterestValid = !empty($healthInterestArray);
 
     // Collect errors
     $errors = [];
@@ -37,15 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($Email) || !filter_var($Email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid Email Address.";
     }
-    
+
     if (empty($passwordHash)) {
         $errors[] = "Password cannot be empty.";
     }
-    
-    if (empty($healthInterest)) {
+
+    if (!$healthInterestValid) {
         $errors[] = "Please select at least one health interest.";
     }
-    
+
     // Check if userID already exists
     $check_stmt = $conn->prepare("SELECT userID FROM user WHERE userID = ?");
     $check_stmt->bind_param("s", $userID);
@@ -68,29 +66,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Proceed only if there are no errors
     if (empty($errors)) {
-        // Hash the password using PHP's password_hash function with the constant PASSWORD_DEFAULT
-        $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
-
-        // Prepare SQL to insert new user
+        // Insert into user table
         $stmt = $conn->prepare("INSERT INTO user (userID, Name, Email, passwordHash, healthInterest) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $userID, $Name, $Email, $passwordHash, $healthInterest);
 
-        try {
-            // Attempt to execute the statement
-            if ($stmt->execute()) {
-                // Registration successful; store success message and forward to login page
-                $_SESSION['signup_success'] = "Account created successfully. Please log in.";
-                header("Location: login.php");
-                exit();
-            } else {
-                // If execution fails, throw an exception with the error from the statement
-                throw new Exception("Registration failed: " . $stmt->error);
-            }
-        } catch (Exception $e) {
-            $errors[] = "Registration failed. Please try again. " . $e->getMessage();
+        if ($stmt->execute()) {
+            
+            $_SESSION['signup_success'] = "Account created successfully. Please log in.";
+            $stmt->close();
+            header("Location: login.php");
+            exit();
+        } else {
+            $errors[] = "Registration failed: " . $stmt->error;
+            $stmt->close();
         }
-
-        $stmt->close();
     }
 
     // If there are any errors, save them to the session and redirect back to the signup page

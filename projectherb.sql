@@ -238,6 +238,8 @@ ALTER TABLE `herb`
   ADD PRIMARY KEY (`herbID`),
   ADD KEY `healthConcerns` (`healthConcerns`);
 
+ALTER TABLE user MODIFY healthInterest TEXT NOT NULL;
+
 --
 -- Indexes for table `savedlist`
 --

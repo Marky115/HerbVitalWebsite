@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2025 at 12:59 AM
+-- Generation Time: Apr 07, 2025 at 01:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,11 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdded`) VALUES
 (1, 25, 'wennis', 'hi', '2025-04-06 22:56:59'),
-(2, 25, 'wennis', 'hi', '2025-04-06 22:59:21');
+(2, 25, 'wennis', 'hi', '2025-04-06 22:59:21'),
+(3, 11, 'wennis', 'hi', '2025-04-06 23:09:22'),
+(4, 11, 'wennis', 'hi', '2025-04-06 23:09:25'),
+(5, 11, 'wennis', 'hhi', '2025-04-06 23:17:34'),
+(6, 11, 'wennis', 'hi', '2025-04-06 23:17:36');
 
 -- --------------------------------------------------------
 
@@ -218,7 +222,7 @@ ALTER TABLE `savedlist`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

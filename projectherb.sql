@@ -248,7 +248,7 @@ ALTER TABLE `savedlist`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  DROP INDEX `healthInterest`,
+  
   ADD PRIMARY KEY (`userID`),
   ADD INDEX `healthInterest` (`healthInterest`);
 

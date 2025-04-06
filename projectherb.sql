@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2025 at 10:54 PM
+-- Generation Time: Apr 06, 2025 at 11:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -202,7 +202,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
 ('wennis', 'wennis', 'haha@haha.ca', '$2y$10$cvua28nVpBuDLoXMN/hSkeWmDW.5o57AzSs7iBBxum.SE5VvCfr8.', 3),
 ('eva', 'eva', 'haha@haha.usa', '$2y$10$UHoffQv5XI5od9CyCtizOuYznZFVXbqZPB/r6PUFPwHoS67FQh4Wm', 3),
-('eva1', 'eva', 'eva@gmail.ca', '$2y$10$HZZBmNFJyvZdA1rubsmSFupgGC5PL0mwMwQFfBxaPkU/j7B/9ogt6', 4);
+('eva1', 'eva', 'eva@gmail.ca', '$2y$10$HZZBmNFJyvZdA1rubsmSFupgGC5PL0mwMwQFfBxaPkU/j7B/9ogt6', 4),
+('wennis1', 'wennis1', 'haha@haha.caqr', '$2y$10$1xEEUmNqohR35Gd.uOhG3eZkj5lwIJWDHoOFne2TRXrRlUlgqQQay', 3),
+('wennis2', 'wenny', 'hihi@haha.comweF', '$2y$10$TjkUp97UqzThRvHB6PTx4OP9Y07n01nYn7/rdyp3Wfz3VA4KbM2BK', 4);
 
 --
 -- Indexes for dumped tables
@@ -242,24 +244,6 @@ ALTER TABLE `herb`
 ALTER TABLE `savedlist`
   ADD KEY `userID` (`userID`),
   ADD KEY `herbID` (`herbID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userID`),
-  ADD INDEX `healthInterest` (`healthInterest`);
-  
-ALTER TABLE user MODIFY healthInterest TEXT NOT NULL;
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

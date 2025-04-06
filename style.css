@@ -525,26 +525,31 @@ footer {
 
 /* herb detail page */
 
+/* herb detail page */
+
 .herbPageContainer{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     margin: 0 auto;
     width: 100%;
-
 }
+
 .herbPageContainer > div:first-child {
-    flex-basis: 50%; 
-    padding-right: 20px; 
+    flex-basis: 50%;
+    padding-right: 20px;
+    display: flex; /* Enable flexbox for alignment */
+    justify-content: flex-start; /* Left-align content horizontally */
+    align-items: flex-start; /* Align items to the top vertically */
 }
 
 .herbPageContainer > div:last-child {
-    flex-basis: 50%; 
-    padding-left: 20px; 
+    flex-basis: 50%;
+    padding-left: 20px;
 }
 
 .herbPage-image img{
-    max-width: 100%;
+    max-width: 20rem;
     height: auto;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -552,9 +557,27 @@ footer {
 
 @media (max-width: 768px) {
     .herbPageContainer {
-        grid-template-columns: 1fr; 
+        flex-direction: column; /* Change to column for single layout */
     }
 
+    .herbPageContainer > div:first-child,
+    .herbPageContainer > div:last-child {
+        flex-basis: 100%; /* Make both divs take full width */
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .herbPageContainer > div:first-child {
+        margin-bottom: 20px; /* Add some space between image and info */
+        display: flex; /* Ensure the first child is a flex container */
+        justify-content: center; /* Center the image horizontally on small screens */
+        align-items: center; /* Center the image vertically on small screens */
+    }
+
+    .herbPage-image img {
+        max-width: 80%; /* Adjust image width for smaller screens */
+        height: auto;
+    }
 }
 
 .saveherb {

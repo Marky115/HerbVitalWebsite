@@ -106,7 +106,6 @@ CREATE TABLE `herb` (
   `imagePath` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Dumping data for table `herb`
 --
@@ -196,7 +195,6 @@ CREATE TABLE `user` (
   `healthInterest` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Dumping data for table `user`
 --
@@ -248,11 +246,8 @@ ALTER TABLE `savedlist`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`userID`),
-  ADD INDEX `healthInterest` (`healthInterest`);
-  
+  ADD KEY `healthInterest` (`healthInterest`);
 
---this is to make sure it takes mutiple healthInterest
-ALTER TABLE user MODIFY healthInterest TEXT NOT NULL;
 --
 -- AUTO_INCREMENT for dumped tables
 --

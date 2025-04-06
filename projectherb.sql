@@ -248,6 +248,8 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`userID`),
   ADD KEY `healthInterest` (`healthInterest`);
 
+--this is to make sure it takes mutiple healthInterest
+ALTER TABLE user MODIFY healthInterest TEXT NOT NULL;
 --
 -- AUTO_INCREMENT for dumped tables
 --

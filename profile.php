@@ -43,7 +43,7 @@ include 'header.php';
                         echo "<h3><a href='herbDetails.php?id=" . htmlspecialchars($herb['herbID']) . "'>" . htmlspecialchars($herb['herbName']) . "</a></h3>";
                         echo "</div>";
                         echo "<div class='saved-herb-actions'>";
-                        echo "<button onclick='unsaveHerb(" . htmlspecialchars($herb['herbID']) . ")'>Unsave</button>";
+                        echo "<button onclick='unsaveHerb(" . htmlspecialchars($herb['herbID']) . ", this)'>Unsave</button>";
                         // prob need ajax to get it to unsave and fetches
                         echo "</div>";
                         echo "</div>";

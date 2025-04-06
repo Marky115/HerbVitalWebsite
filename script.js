@@ -145,5 +145,62 @@ document.querySelector('#search-bar-header input[name="query"]').addEventListene
                 window.location.href = 'delete-profile.php';
             }
         }
-
+    
+        //this is for the unsave herb in the profile page
+        function unsaveHerb(herbId, button) {
+            // Store the button reference explicitly
+            const clickedButton = button || event.target;
+            
+            if (confirm("Are you sure you want to remove this herb from your saved list?")) {
+                // Create AJAX request
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "unsave_herb.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                
+                // Handle response
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                // Remove the herb element from the DOM
+                                const herbElement = clickedButton.closest('.saved-herb-item');
+                                if (herbElement) {
+                                    herbElement.remove();
+                                    
+                                    const savedHerbs = document.querySelectorAll('.saved-herb-item');
+                                    if (savedHerbs.length === 0) {
+                                        const container = document.querySelector('.container');
+                                        const noHerbsMessage = document.createElement('p');
+                                        noHerbsMessage.className = 'no-saved-herbs';
+                                        noHerbsMessage.textContent = "You haven't saved any herbs yet.";
+                                        
+                                        const profileActions = document.querySelector('.profile-actions');
+                                        if (profileActions && container) {
+                                            container.insertBefore(noHerbsMessage, profileActions);
+                                        } else if (container) {
+                                            container.appendChild(noHerbsMessage);
+                                        }
+                                    }
+                                    
+                                    console.log("Herb removed successfully");
+                                } else {
+                                    console.error("Could not find herb element to remove");
+                                }
+                            } else {
+                                alert("Error: " + response.message);
+                            }
+                        } catch (e) {
+                            console.error("Error parsing response:", e);
+                            console.log("Raw response:", xhr.responseText);
+                        }
+                    } else {
+                        alert("Error processing your request. Please try again.");
+                    }
+                };
+                
+                // Send the request
+                xhr.send("herbId=" + herbId);
+            }
+        }
         

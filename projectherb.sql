@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2025 at 08:37 PM
+-- Generation Time: Apr 06, 2025 at 09:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,7 +50,8 @@ INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdd
 (22, 48, 'tehe1', 'testing', '2025-04-05 02:56:41'),
 (23, 25, 'wennis', 'sup', '2025-04-05 03:07:44'),
 (24, 45, 'wennis', 'taste bad', '2025-04-05 03:08:04'),
-(25, 13, 'wennis', 'its too bitter for me turns my tongue yellow', '2025-04-05 03:08:25');
+(25, 13, 'wennis', 'its too bitter for me turns my tongue yellow', '2025-04-05 03:08:25'),
+(26, 16, 'wennis', 'i like the smeel', '2025-04-06 18:40:20');
 
 -- --------------------------------------------------------
 
@@ -176,7 +177,9 @@ CREATE TABLE `savedlist` (
 
 INSERT INTO `savedlist` (`userID`, `herbID`) VALUES
 ('wennis', 13),
-('wennis', 26);
+('wennis', 26),
+('wenny', 3),
+('wennis', 16);
 
 -- --------------------------------------------------------
 
@@ -197,10 +200,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
-('rash1', 'rashy', 'rashy@gmail.com', '$2y$10$rebZuRZiEtlym8eoA8a3RuwyiyYZWLkS13aD3KkY1ym.8ODz9VTGu', 2),
-('tehe1', 'rash', 'rash@gmaill.com', '$2y$10$Xe0g6fGohUXUdpb6UyeNDuQ5sY.pW1TGPwLy27i83gP9flIoCrey6', 1),
-('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0),
-('wenny', 'wenny', 'hihi@haha.com', '$2y$10$5F2/dRTCjUToDXd487jxuuCTMQL4m.mM5owhBR0oG5r18k/dZ8x.m', 8);
+('wennis', 'wennis', 'haha@haha.ca', '$2y$10$cvua28nVpBuDLoXMN/hSkeWmDW.5o57AzSs7iBBxum.SE5VvCfr8.', 3);
 
 --
 -- Indexes for dumped tables
@@ -256,7 +256,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

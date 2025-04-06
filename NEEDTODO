@@ -1,15 +1,19 @@
 Use callback URL stored in session to redirect after logging in
 
-Cycle though the 8 health concerns on homepage
+WENHAN Cycle though the 8 health concerns on homepage
+    Show user saved health intrest herb on home page
 
-Saved Herb add and remove 
+
+Saved Herb add and MARK 
+    remove
+    show unsave in the herbdetail page if its saved in the user's db, if its not show save
 
 Comment
 
 Sign Up Page
 
-    Health Interests: Registration failed. Please try again. Duplicate entry '1' for key 'healthInterest'
+    MARK Health Interests: Registration failed. Please try again. Duplicate entry '1' for key 'healthInterest'
 
 savedlist
 
-    needs to save the userID associated with the herbID
+    DONE needs to save the userID associated with the herbID

@@ -69,6 +69,27 @@ function goToHerbPage(herbId) {
         xmlhttp.open("GET", "livesearch.php?q=" + str, true);
         xmlhttp.send();
         }
+
+        document.querySelector('#search-bar-header input[name="query"]').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent the default form submission
+              
+              const firstResult = document.querySelector('#livesearch div');
+              if (firstResult) {
+                const onclickAttribute = firstResult.getAttribute('onclick');
+                if (onclickAttribute) {
+                  const herbIdMatch = onclickAttribute.match(/goToHerbPage\("(\d+)"\)/);
+                  if (herbIdMatch && herbIdMatch[1]) {
+                    // see if the searched result matches, if yes then take to the herb detail
+                    window.location.href = 'herbDetails.php?id=' + herbIdMatch[1];
+                  }
+                }
+              } else {
+                this.form.submit(); 
+              }
+            }
+          });
+
             
         function selectSuggestion(suggestion) { // For the header search bar
             document.querySelector('#search-bar-header input[type="text"]').value = suggestion;

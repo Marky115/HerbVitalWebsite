@@ -543,7 +543,7 @@ footer {
     padding-left: 20px; 
 }
 
-.herb-image img{
+.herbPage-image img{
     max-width: 100%;
     height: auto;
     border-radius: 5px;
@@ -551,19 +551,10 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .herb-grid {
+    .herbPageContainer {
         grid-template-columns: 1fr; 
     }
 
-    .concern-list {
-        flex-direction: column; 
-        align-items: flex-start; 
-    }
-
-    .concern-list a {
-        width: 100%; 
-        margin-bottom: 5px; 
-    }
 }
 
 .saveherb {

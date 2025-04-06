@@ -69,7 +69,7 @@ include 'header.php';
         <section class="herb-details">
             <?php if ($herb): ?>
                 <div class="herbPageContainer">
-                    <div class="herb-image">
+                    <div class="herbPage-image">
                         <img src="<?php echo htmlspecialchars($herb['imagePath']); ?>" alt="<?php echo htmlspecialchars($herb['herbName']); ?>">
                     </div>
                     <div class="herb-info">

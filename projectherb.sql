@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2025 at 12:47 AM
+-- Generation Time: Apr 07, 2025 at 12:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,39 +48,28 @@ INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdd
 -- --------------------------------------------------------
 
 --
--- Table structure for table `featuredherb`
---
-
-CREATE TABLE `featuredherb` (
-  `featuredID` varchar(11) NOT NULL,
-  `Date` date NOT NULL,
-  `herbID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `healthconcerns`
 --
 
 CREATE TABLE `healthconcerns` (
   `concernID` int(11) NOT NULL,
-  `concernName` varchar(50) NOT NULL
+  `concernName` varchar(50) NOT NULL,
+  `healthDesc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `healthconcerns`
 --
 
-INSERT INTO `healthconcerns` (`concernID`, `concernName`) VALUES
-(1, 'Digestive Issues'),
-(2, 'Immune Support'),
-(3, 'Stress and Anxiety'),
-(4, 'Inflammation and Pain'),
-(5, 'Skin Health'),
-(6, 'Sleep Disorders'),
-(7, 'Cardiovascular Health'),
-(8, 'Detoxification');
+INSERT INTO `healthconcerns` (`concernID`, `concernName`, `healthDesc`) VALUES
+(1, 'Digestive Issues', ''),
+(2, 'Immune Support', ''),
+(3, 'Stress and Anxiety', ''),
+(4, 'Inflammation and Pain', ''),
+(5, 'Skin Health', ''),
+(6, 'Sleep Disorders', ''),
+(7, 'Cardiovascular Health', ''),
+(8, 'Detoxification', '');
 
 -- --------------------------------------------------------
 
@@ -202,13 +191,6 @@ ALTER TABLE `comments`
   ADD PRIMARY KEY (`commentID`),
   ADD KEY `herbID` (`herbID`),
   ADD KEY `userID` (`userID`);
-
---
--- Indexes for table `featuredherb`
---
-ALTER TABLE `featuredherb`
-  ADD PRIMARY KEY (`featuredID`),
-  ADD KEY `herbID` (`herbID`);
 
 --
 -- Indexes for table `healthconcerns`

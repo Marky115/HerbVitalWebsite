@@ -66,12 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Proceed only if there are no errors
     if (empty($errors)) {
-        // Insert into user table
+       
         $stmt = $conn->prepare("INSERT INTO user (userID, Name, Email, passwordHash, healthInterest) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $userID, $Name, $Email, $passwordHash, $healthInterest);
 
         if ($stmt->execute()) {
-            
+           
             $_SESSION['signup_success'] = "Account created successfully. Please log in.";
             $stmt->close();
             header("Location: login.php");

@@ -1,14 +1,9 @@
 <?php
 include ('login-process.php');
+$title = "Log In";
+include 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - HerbVita</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+
 <body class='login-body'>
     <div class="container1">
         <div class="loginImg">
@@ -43,5 +38,4 @@ include ('login-process.php');
             <p>Don't have an account? <a href="signup.php">Sign up</a></p>
         </div>
     </div>
-</body>
-</html>
+    <?php include 'footer.php';  ?>

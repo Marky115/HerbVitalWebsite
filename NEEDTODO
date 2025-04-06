@@ -5,3 +5,11 @@ Cycle though the 8 health concerns on homepage
 Saved Herb add and remove 
 
 Comment
+
+Sign Up Page
+
+    Health Interests: Registration failed. Please try again. Duplicate entry '1' for key 'healthInterest'
+
+savedlist
+
+    needs to save the userID associated with the herbID

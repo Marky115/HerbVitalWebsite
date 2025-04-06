@@ -242,6 +242,24 @@ ALTER TABLE `herb`
 ALTER TABLE `savedlist`
   ADD KEY `userID` (`userID`),
   ADD KEY `herbID` (`herbID`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userID`),
+  ADD INDEX `healthInterest` (`healthInterest`);
+  
+ALTER TABLE user MODIFY healthInterest TEXT NOT NULL;
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

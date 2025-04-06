@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2025 at 05:26 AM
+-- Generation Time: Apr 06, 2025 at 08:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -175,11 +175,8 @@ CREATE TABLE `savedlist` (
 --
 
 INSERT INTO `savedlist` (`userID`, `herbID`) VALUES
-('0', 11),
-('0', 48),
-('0', 45),
-('0', 25),
-('0', 13);
+('wennis', 13),
+('wennis', 26);
 
 -- --------------------------------------------------------
 
@@ -248,10 +245,8 @@ ALTER TABLE `savedlist`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  
   ADD PRIMARY KEY (`userID`),
-  ADD INDEX `healthInterest` (`healthInterest`);
-
+  ADD KEY `healthInterest` (`healthInterest`);
 
 --
 -- AUTO_INCREMENT for dumped tables

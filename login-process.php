@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordHash = $_POST['passwordHash'];
 
 
-    // Preparing SQL
+    // Preparing SQL thingy
     $stmt = $conn->prepare("SELECT userID, passwordHash FROM user WHERE userID = ?");
     $stmt->bind_param("s", $userID);
     $stmt->execute();

@@ -15,12 +15,13 @@ if (isset($_POST['concern_id']) && is_numeric($_POST['concern_id'])) {
         echo '<div class="herb-grid">';
         while ($row = $result->fetch_assoc()) {
             $imagePath = htmlspecialchars($row['imagePath']);
-            echo '<div class="herb-item">';
-            echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($row['herbName']) . '">';
-            echo '<h3>' . $row['herbName'] . '</h3>';
-            echo '<p>' . substr($row['Benefit'], 0, 100) . '...</p>';
-            echo '<a href="herbDetails.php?id=' . $row['herbID'] . '">View Details</a>';
-            echo '</div>';
+            $herbDetailsLink = 'herbDetails.php?id=' . $row['herbID'];
+        
+                echo '<div class="herb-item" onclick="window.location.href=\'' . $herbDetailsLink . '\'">';
+                echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($row['herbName']) . '">';
+                echo '<h3>' . $row['herbName'] . '</h3>';
+                echo '<p>' . substr($row['Benefit'], 0, 100) . '.</p>';
+                echo '</div>';
         }
         echo '</div>';
     } else {

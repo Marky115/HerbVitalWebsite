@@ -251,6 +251,7 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `healthInterest` (`healthInterest`),
   ADD KEY `CommentID` (`CommentID`);
 
+
 --
 -- AUTO_INCREMENT for dumped tables
 --

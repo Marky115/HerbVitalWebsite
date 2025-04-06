@@ -248,12 +248,8 @@ ALTER TABLE `savedlist`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`userID`),
-<<<<<<< Updated upstream
-  ADD KEY `healthInterest` (`healthInterest`);
-=======
   ADD INDEX `healthInterest` (`healthInterest`);
   
->>>>>>> Stashed changes
 
 --this is to make sure it takes mutiple healthInterest
 ALTER TABLE user MODIFY healthInterest TEXT NOT NULL;

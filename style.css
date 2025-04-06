@@ -77,7 +77,7 @@ main {
     outline: none;
     border-color: #3e8e41;
 }
-
+/* 
 #search-bar-header button,
 #search-bar-main button {
     padding: 10px 20px;
@@ -93,7 +93,7 @@ main {
 #search-bar-header button:hover,
 #search-bar-main button:hover {
     background-color: #367c39;
-}
+} */
 
 .search-icon {
     position: absolute;
@@ -155,7 +155,7 @@ main {
         box-sizing: border-box;
     }
 
-    #search-bar-main button {
+    /* #search-bar-main button {
         padding: 16px 22px;
         width: calc(100% - 2rem);
         margin-top: 0;
@@ -172,7 +172,7 @@ main {
 
     #search-bar-main button:hover {
         background-color: #d9f0da;
-    }
+    } */
 }
 
 /* search result*/
@@ -544,9 +544,26 @@ footer {
 }
 
 .herb-image img{
-    max-width: 25rem;
-    max-height: 25rem;
-    border-radius: 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .herb-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .concern-list {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .concern-list a {
+        width: 100%; 
+        margin-bottom: 5px; 
+    }
 }
 
 .saveherb {
@@ -571,4 +588,20 @@ footer {
     height: 15rem;
     border-radius: 20px;
 
+}
+
+.delete-profile-btn{
+
+padding: 10px 20px;
+    background-color: #494949;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-profile-btn:hover {
+    background-color: #aa3a3a;
 }

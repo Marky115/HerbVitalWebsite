@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2025 at 11:07 PM
+-- Generation Time: Apr 07, 2025 at 12:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,18 +40,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdded`) VALUES
-(15, 25, 'wennis', 'hello', '2025-04-02 20:09:19'),
-(16, 25, 'wennis', 'bye', '2025-04-02 20:09:22'),
 (17, 25, 'tehe1', 'hi', '2025-04-02 20:10:21'),
 (18, 41, 'tehe1', 'hello', '2025-04-02 20:11:09'),
-(19, 11, 'wennis', 'thats a you problem', '2025-04-05 02:55:40'),
-(20, 11, 'wennis', 'yeah im talking to you', '2025-04-05 02:55:48'),
 (21, 11, 'tehe1', 'thats what i thought', '2025-04-05 02:56:09'),
-(22, 48, 'tehe1', 'testing', '2025-04-05 02:56:41'),
-(23, 25, 'wennis', 'sup', '2025-04-05 03:07:44'),
-(24, 45, 'wennis', 'taste bad', '2025-04-05 03:08:04'),
-(25, 13, 'wennis', 'its too bitter for me turns my tongue yellow', '2025-04-05 03:08:25'),
-(26, 16, 'wennis', 'i like the smeel', '2025-04-06 18:40:20');
+(22, 48, 'tehe1', 'testing', '2025-04-05 02:56:41');
 
 -- --------------------------------------------------------
 
@@ -176,10 +168,7 @@ CREATE TABLE `savedlist` (
 --
 
 INSERT INTO `savedlist` (`userID`, `herbID`) VALUES
-('wennis', 13),
-('wennis', 26),
-('wenny', 3),
-('wennis', 16);
+('wenny', 3);
 
 -- --------------------------------------------------------
 
@@ -192,7 +181,7 @@ CREATE TABLE `user` (
   `Name` varchar(20) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `passwordHash` varchar(255) NOT NULL,
-  `healthInterest` int(11) NOT NULL
+  `healthInterest` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -200,11 +189,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
-('wennis', 'wennis', 'haha@haha.ca', '$2y$10$cvua28nVpBuDLoXMN/hSkeWmDW.5o57AzSs7iBBxum.SE5VvCfr8.', 3),
-('eva', 'eva', 'haha@haha.usa', '$2y$10$UHoffQv5XI5od9CyCtizOuYznZFVXbqZPB/r6PUFPwHoS67FQh4Wm', 3),
-('eva1', 'eva', 'eva@gmail.ca', '$2y$10$HZZBmNFJyvZdA1rubsmSFupgGC5PL0mwMwQFfBxaPkU/j7B/9ogt6', 4),
-('wennis1', 'wennis1', 'haha@haha.caqr', '$2y$10$1xEEUmNqohR35Gd.uOhG3eZkj5lwIJWDHoOFne2TRXrRlUlgqQQay', 3),
-('wennis2', 'wenny', 'hihi@haha.comweF', '$2y$10$TjkUp97UqzThRvHB6PTx4OP9Y07n01nYn7/rdyp3Wfz3VA4KbM2BK', 4);
+('wennis', 'wenny', 'haha@haha.ca', '$2y$10$Y7pejtkrBHX4cGJWYlAR6uVgupYd.qpGCzzHyk6abnCvsSERYRUPO', '1,5,6');
 
 --
 -- Indexes for dumped tables
@@ -237,8 +222,6 @@ ALTER TABLE `healthconcerns`
 ALTER TABLE `herb`
   ADD PRIMARY KEY (`herbID`),
   ADD KEY `healthConcerns` (`healthConcerns`);
-
-ALTER TABLE user MODIFY healthInterest TEXT NOT NULL;
 
 --
 -- Indexes for table `savedlist`

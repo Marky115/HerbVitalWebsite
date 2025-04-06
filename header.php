@@ -25,7 +25,7 @@ include 'db_connect.php';
                     <li><a href="index.php">Home</a></li>
                     <li><a href="browseHerb.php">Browse Herbs</a></li>
                     <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-                        <li><a href="profile.php">Saved Herbs</a></li>
+                        <li><a href="profile.php">Profile</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     <?php else: ?>
                         <li><a href="login.php">Login/Register</a></li>

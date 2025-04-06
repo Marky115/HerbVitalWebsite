@@ -3,6 +3,8 @@ session_start();
 
 include 'db_connect.php';
 
+
+
 // join the herb table with the saved list to show the names and images as well
 
 function getSavedHerbs($conn, $userId) {
@@ -17,8 +19,9 @@ function getSavedHerbs($conn, $userId) {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-$title = "Saved Herbs";
+$title = "Profile page";
 include 'header.php';
+
 
 ?>
 
@@ -48,6 +51,13 @@ include 'header.php';
                 } else {
                     echo "<p class='no-saved-herbs'>You haven't saved any herbs yet.</p>";
                 }
+
+                echo "<div class='profile-actions'>";
+                echo "<h2>Account Actions</h2>";
+                echo "<button class='delete-profile-btn' onclick='confirmDeleteProfile()'>Delete Profile</button>";
+                echo "</div>";
+                
+
             } else {
                 echo "<p>Please log in to see your saved herbs. <a href='login.php'>Login</a></p>";
             }

@@ -1,8 +1,5 @@
-//Basic functionality for now. PHP will handle most dynamic content.
-//Example, to show the user section when logged in, or the herb details.
-//example show the user section.
+
 document.addEventListener('DOMContentLoaded', function() {
-    //Example, if user is logged in, show user section.
     let loggedIn = false; //Change to true for testing.
     if (loggedIn){
         document.getElementById('user-section').classList.remove('hidden');
@@ -70,25 +67,25 @@ function goToHerbPage(herbId) {
         xmlhttp.send();
         }
 
-        document.querySelector('#search-bar-header input[name="query"]').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-              event.preventDefault(); // Prevent the default form submission
+document.querySelector('#search-bar-header input[name="query"]').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+    event.preventDefault(); // Prevent the default form submission
               
-              const firstResult = document.querySelector('#livesearch div');
-              if (firstResult) {
-                const onclickAttribute = firstResult.getAttribute('onclick');
-                if (onclickAttribute) {
-                  const herbIdMatch = onclickAttribute.match(/goToHerbPage\("(\d+)"\)/);
-                  if (herbIdMatch && herbIdMatch[1]) {
-                    // see if the searched result matches, if yes then take to the herb detail
-                    window.location.href = 'herbDetails.php?id=' + herbIdMatch[1];
-                  }
+    const firstResult = document.querySelector('#livesearch div');
+    if (firstResult) {
+        const onclickAttribute = firstResult.getAttribute('onclick');
+        if (onclickAttribute) {
+            const herbIdMatch = onclickAttribute.match(/goToHerbPage\("(\d+)"\)/);
+            if (herbIdMatch && herbIdMatch[1]) {
+                // see if the searched result matches, if yes then take to the herb detail
+                window.location.href = 'herbDetails.php?id=' + herbIdMatch[1];
                 }
-              } else {
-                this.form.submit(); 
-              }
             }
-          });
+        }
+
+        // no action if theres no result match
+    }
+});
 
             
         function selectSuggestion(suggestion) { // For the header search bar
@@ -120,6 +117,33 @@ function goToHerbPage(herbId) {
             document.querySelector('#search-bar-main input[type="text"]').value = suggestion;
             document.getElementById("livesearch-main").innerHTML = "";
             document.getElementById("livesearch-main").style.border = "0px";
+        }
+
+        document.querySelector('#search-bar-main input[name="query"]').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent the default form submission
+        
+              const firstResultMain = document.querySelector('#livesearch-main div');
+              if (firstResultMain) {
+                const onclickAttributeMain = firstResultMain.getAttribute('onclick');
+                if (onclickAttributeMain) {
+                  const herbIdMatchMain = onclickAttributeMain.match(/goToHerbPage\("(\d+)"\)/);
+                  if (herbIdMatchMain && herbIdMatchMain[1]) {
+                    // see if the searched result matches, if yes then take to the herb detail
+                    window.location.href = 'herbDetails.php?id=' + herbIdMatchMain[1];
+                  }
+                }
+              }         // no action if theres no result match
+
+            }
+          });
+
+        // for the profile page.
+
+        function confirmDeleteProfile() {
+            if (confirm('Are you sure you want to delete your profile? This action is irreversible and will also delete your saved herbs and comments.')) {
+                window.location.href = 'delete-profile.php';
+            }
         }
 
         

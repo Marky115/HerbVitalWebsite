@@ -4,10 +4,11 @@ WENHAN Cycle though the 8 health concerns on homepage
     Show user saved health intrest herb on home page
 
 
-Saved Herb add and MARK 
+Saved Herb/profile page add and MARK 
     remove
     show unsave in the herbdetail page if its saved in the user's db, if its not show save
     Styled better
+    add delete profile, delete their comments associated with their acc as well.
 
 Comment
     styled better
@@ -22,3 +23,6 @@ savedlist
 
 LiveSearch
     Not a proper error message when the user searches for something that’s not in the database
+
+Delete the featuredherb table as not being used 
+Add another text row for health conerns briefly address what the concern addresses to be displayed on the featured page.

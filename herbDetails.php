@@ -175,19 +175,21 @@ include 'header.php';
         ?>
         
         
-    </section>
+    
     
     <!-- Comment Form -->
     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+    <div class="comment-form-wrapper">
         <form action="submitComment.php" method="POST">
             <textarea name="comment" rows="5" cols="50" required></textarea>
             <input type="hidden" name="herb_id" value="<?php echo htmlspecialchars($herbId); ?>">
             <button type="submit">Post Comment</button>
         </form>
-    <?php else: ?>
-        <p>You must be logged in to comment. <a href="login.php">Login</a> or <a href="signup.php">Sign up</a>.</p>
-    <?php endif; ?>
-    
+    </div>
+<?php else: ?>
+    <p>You must be logged in to comment. <a href="login.php">Login</a> or <a href="signup.php">Sign up</a>.</p>
+<?php endif; ?>
+    </section>
     </main>
 
     <?php include 'footer.php';  ?>

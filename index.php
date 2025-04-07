@@ -7,7 +7,7 @@ include 'db_connect.php';
 // saved featured herbs as an array so that it can loop around
 // $featuredHerbs = [];
 
-// making sure that the default nonregistered user sees different health concern category throughout the month, different one each week.
+// the default nonregistered user sees different health concern category throughout the month, different one each week.
 function getCurrentWeekNumber() {
     $date = new DateTime();
     $date->setISODate($date->format('Y'), $date->format('W'), 1); // Set to the first day of the week
@@ -15,39 +15,32 @@ function getCurrentWeekNumber() {
 }
 
 // concern ID for the current week
-function getFeaturedConcernId() {
+function getFeaturedConcernDetails() {
     $currentWeek = getCurrentWeekNumber();
-
-    // Fetch all concern IDs
     global $conn;
-    $concernIds = [];
-    $concernSql = "SELECT concernID FROM healthconcerns ORDER BY concernID ASC"; 
+    $concernDetails = null;
+    $concernSql = "SELECT concernID, concernName, healthDesc FROM healthconcerns ORDER BY concernID ASC";
     $concernResult = $conn->query($concernSql);
     if ($concernResult->num_rows > 0) {
-        while ($row = $concernResult->fetch_assoc()) {
-            $concernIds[] = $row['concernID'];
+        $concerns = $concernResult->fetch_all(MYSQLI_ASSOC);
+        if (!empty($concerns)) {
+            $index = ($currentWeek - 1) % count($concerns);
+            $concernDetails = $concerns[$index];
         }
     }
-
-    if (empty($concernIds)) {
-        return null; // No concerns to rotate through
-    }
-
-    // Use the week number to determine the index
-    $index = ($currentWeek - 1) % count($concernIds); // array starts at 0
-    return $concernIds[$index];
+    return $concernDetails;
 }
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    $userId = $_SESSION['userID'];
+        $userId = $_SESSION['userID'];
 
-    $userInterestSql = "SELECT healthInterest FROM user WHERE userID = ?";
-    $userInterestStmt = $conn->prepare($userInterestSql);
-    $userInterestStmt->bind_param("s", $userId);
-    $userInterestStmt->execute();
-    $userInterestResult = $userInterestStmt->get_result();    
+        $userInterestSql = "SELECT healthInterest FROM user WHERE userID = ?";
+        $userInterestStmt = $conn->prepare($userInterestSql);
+        $userInterestStmt->bind_param("s", $userId);
+        $userInterestStmt->execute();
+        $userInterestResult = $userInterestStmt->get_result();    
 
-    $userHerbsByCategory = []; // Array to store herbs organized by category
+        $userHerbsByCategory = []; // Array to store herbs organized by category
 
     if ($userInterestRow = $userInterestResult->fetch_assoc()) {
         $userInterestString = $userInterestRow['healthInterest'];
@@ -127,17 +120,15 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $userInterestStmt->close();
 } else {
     // If the user is not logged in, fetch herbs that rotate through the concern list ID
-    $featuredConcernId = getFeaturedConcernId();
-    if ($featuredConcernId !== null) {
-        $concernNameSql = "SELECT concernName FROM healthconcerns WHERE concernID = ?";
-        $concernNameStmt = $conn->prepare($concernNameSql);
-        $concernNameStmt->bind_param("i", $featuredConcernId);
-        $concernNameStmt->execute();
-        $concernNameResult = $concernNameStmt->get_result();
-        if ($row = $concernNameResult->fetch_assoc()) {
-            $weeklyFeaturedConcernName = htmlspecialchars($row['concernName']);
-        }
-        $concernNameStmt->close();
+    $featuredConcern = getFeaturedConcernDetails();
+    $weeklyFeaturedConcernName = '';
+    $weeklyFeaturedConcernDesc = '';
+    $featuredConcernId = null;
+
+    if ($featuredConcern !== null) {
+       $weeklyFeaturedConcernName = htmlspecialchars($featuredConcern['concernName']);
+        $weeklyFeaturedConcernDesc = htmlspecialchars($featuredConcern['healthDesc']);
+        $featuredConcernId = $featuredConcern['concernID'];
 
         $generalHerbsSql = "SELECT herbID, herbName, Benefit, imagePath
                             FROM herb
@@ -170,11 +161,23 @@ include 'header.php';
 
         <div id="search-bar-main">
             <form action="search.php" method="get">
-                <input type="text" name="query" placeholder="Search Herbs..." size="30" onkeyup="showResultMain(this.value)">
+                <input type="text" name="query" placeholder="Search Herbs" size="30" onkeyup="showResultMain(this.value)">
                 <span class="search-icon"></span>
                 <div id="livesearch-main"></div>
             </form>
         </div>
+
+        <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true): ?>
+            <section id="featured-concern-description">
+                <h2>This week's focus: <?php echo $weeklyFeaturedConcernName; ?></h2>
+                <?php if (!empty($weeklyFeaturedConcernDesc)): ?>
+                    <p><?php echo $weeklyFeaturedConcernDesc; ?></p>
+                <?php else: ?>
+                    <p>Explore our selection of herbs related to this week's highlighted health concern.</p>
+                <?php endif; ?>
+            </section>
+        <?php endif; ?>
+        
 
 
     <section id="featured-herbs-db">
@@ -193,7 +196,7 @@ include 'header.php';
                         echo '<div class="herb-item" onclick="window.location.href=\'' . $herbDetailsLink . '\'">';
                         echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($herb['herbName']) . '">';
                         echo '<h3>' . htmlspecialchars($herb['herbName']) . '</h3>';
-                        echo '<p>' . substr(htmlspecialchars($herb['Benefit']), 0, 100) . '...</p>';
+                        echo '<p>' . substr(htmlspecialchars($herb['Benefit']), 0, 100) . '</p>';
                         echo '</div>';
                         $displayedCount++;
                     endforeach;
@@ -211,7 +214,7 @@ include 'header.php';
                         echo '<div class="herb-item" onclick="window.location.href=\'' . $herbDetailsLink . '\'">';
                         echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($herb['herbName']) . '">';
                         echo '<h3>' . htmlspecialchars($herb['herbName']) . '</h3>';
-                        echo '<p>' . substr(htmlspecialchars($herb['Benefit']), 0, 100) . '...</p>';
+                        echo '<p>' . substr(htmlspecialchars($herb['Benefit']), 0, 100) . '</p>';
                         echo '</div>';
                         $displayedCount++;
                     endforeach;
@@ -222,15 +225,7 @@ include 'header.php';
             endif;
             ?>
         <?php else: ?>
-            <h2>This week's Featured Herbs category is
-            <?php
-            if (isset($weeklyFeaturedConcernName) && !empty($weeklyFeaturedConcernName)):
-                echo htmlspecialchars($weeklyFeaturedConcernName);
-            else:
-                echo "being highlighted"; 
-            endif;
-            ?>
-            </h2>
+            
             <div class="herb-grid">
                 <?php
                 $displayedCount = 0;
@@ -242,7 +237,7 @@ include 'header.php';
                     echo '<div class="herb-item" onclick="window.location.href=\'' . $herbDetailsLink . '\'">';
                     echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($herb['herbName']) . '">';
                     echo '<h3>' . htmlspecialchars($herb['herbName']) . '</h3>';
-                    echo '<p>' . substr(htmlspecialchars($herb['Benefit']), 0, 100) . '...</p>';
+                    echo '<p>' . substr(htmlspecialchars($herb['Benefit']), 0, 100) . '</p>';
                     echo '</div>';
                     $displayedCount++;
                 endforeach;

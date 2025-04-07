@@ -698,37 +698,67 @@ footer {
     font-style: italic;
 }
 
+.saveherb {
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+}
+
+/* Style for the "Save Herb" button */
+.saveherb[name="save_herb"] {
+    background-color: #367c39;
+    color: white;
+}
+
+.saveherb[name="save_herb"]:hover {
+    background-color: #225925;
+}
+
+/* Style for the "Unsave Herb" button */
+.saveherb[name="unsave_herb"] {
+    background-color: #aa3a3a; 
+    color: white;
+}
+
+.saveherb[name="unsave_herb"]:hover {
+    background-color: rgb(169, 33, 28);
+}
+
 
 
 /* profile page */
 
-.saveherb {
-    padding: 10px 20px;
-    background-color: #3e8e41;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-
-}
-
-.saveherb:hover{
-    background-color: #367c39;
-}
 
 .saved-herb-item img{
 
-    width: 15rem;
-    height: 15rem;
+    width: 10rem;
+    height: 10rem;
     border-radius: 20px;
 
 }
 
+.saved-herb-actions button {
+    
+padding: 10px 20px;
+background-color: #3e8e41;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s ease;
+}
+
+.saved-herb-actions button:hover {
+    background-color: #818181; /* Darker red on hover */
+}
+
 .delete-profile-btn{
 
-padding: 10px 20px;
+    padding: 10px 20px;
     background-color: #494949;
     color: white;
     border: none;
@@ -740,4 +770,67 @@ padding: 10px 20px;
 
 .delete-profile-btn:hover {
     background-color: #aa3a3a;
+}
+
+.saved-herb-container {
+    margin-top: 20px;
+}
+
+.saved-herb-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    justify-content: space-between; /* Space out image, info, and actions */
+}
+
+.saved-herb-info {
+    flex-grow: 1; /* Allow info to take up more space */
+    margin-left: 20px;
+}
+
+.saved-herb-info h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.saved-herb-info h3 a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.saved-herb-info h3 a:hover {
+    color: #5cb85c; /* Example hover color */
+}
+
+.saved-herb-actions {
+    display: flex;
+    gap: 10px; /* Space between buttons if you add more */
+    align-items: center; /* Vertically align buttons */
+}
+
+.saved-herb-actions button {
+    /* Inherits styles from your existing button rule */
+    padding: 8px 15px; /* Adjust padding for smaller context */
+    font-size: 0.9rem; /* Adjust font size for smaller context */
+    background-color: #dc3545; /* Change to a more "unsave" related color */
+}
+
+.saved-herb-actions button:hover {
+    background-color: #c82333; /* Darker "unsave" color on hover */
+}
+
+.no-saved-herbs {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+    color: #777;
+    font-style: italic;
 }

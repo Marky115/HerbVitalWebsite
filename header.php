@@ -19,7 +19,7 @@ include 'db_connect.php';
 <body>
     <header>
         <div class="container">
-            <h1>HerbVita</h1>
+            <a href="login.php"><h1>HerbVita</h1></a>
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>

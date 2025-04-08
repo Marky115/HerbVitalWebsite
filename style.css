@@ -1,5 +1,24 @@
+@font-face {
+    font-family: 'Montserrat';
+    src:url('Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+
+    
+    src: url('Montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+
 body {
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;  
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -22,8 +41,15 @@ header {
 
 header h1 {
     margin: 0;
+ 
     display: inline-block;
-    color: black;
+    color: #3e8e41;
+    transition: color 0.3s ease;
+}
+
+header h1:hover {
+
+    color: #274528;
 }
 
 nav ul {
@@ -38,13 +64,16 @@ nav ul li {
 
     display: inline;
     margin-left: 20px;
+    
+
 
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #274528;
     font-size: 1.2rem;
+    font-weight: 500;
 }
 nav ul li a:hover {
     text-decoration: none;
@@ -253,6 +282,12 @@ main {
 
 }
 
+.herb-item p{
+   font-family:Georgia, 'Times New Roman', Times, serif;
+
+}
+
+
 .concern-list {
     display: flex;
     flex-wrap: wrap;
@@ -262,6 +297,8 @@ main {
 .concern-list a {
    
     background-color: #3db3433e;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+
 
    padding: 6px 8px;
     text-decoration: none;
@@ -358,7 +395,7 @@ footer {
     width: 40%;
     padding: 10px;
     font-size: 18px;
-    background: #28a745;
+    background:#3e8e41;
     color: white;
     border: none;
     cursor: pointer;
@@ -449,7 +486,6 @@ footer {
     padding: 0;
     background-color: #f9fcf9;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
 }
 
 .signup-card{
@@ -574,8 +610,12 @@ footer {
 .herbPageContainer > div:last-child {
     flex-basis: 50%;
     padding-left: 20px;
+    
 }
+.herbPageContainer > div:last-child p{
+    font-family:Georgia, 'Times New Roman', Times, serif;
 
+}
 .herb-image img { /* Corrected selector to match HTML class */
     max-width: 20rem;
     height: auto;
@@ -684,7 +724,8 @@ footer {
 }
 
 .herb-details-comments button[type="submit"]:hover {
-    background-color: #367c39;
+    background-color: #225925;
+    
 }
 
 .herb-details-comments p {
@@ -712,7 +753,7 @@ footer {
 }
 
 #featured-concern-description h2 {
-    color: #5cb85c; 
+    color: #3e8e41;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 24px;
@@ -738,7 +779,7 @@ footer {
 
 /* Style for the "Save Herb" button */
 .saveherb[name="save_herb"] {
-    background-color: #367c39;
+    background-color: #3e8e41;
     color: white;
 }
 
@@ -831,27 +872,28 @@ transition: background-color 0.3s ease;
     text-decoration: none;
     color: #333;
     transition: color 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 .saved-herb-info h3 a:hover {
-    color: #5cb85c; /* Example hover color */
+    color: #3e8e41;
 }
 
 .saved-herb-actions {
     display: flex;
-    gap: 10px; /* Space between buttons if you add more */
-    align-items: center; /* Vertically align buttons */
+    gap: 10px; 
+    align-items: center; 
 }
 
 .saved-herb-actions button {
-    /* Inherits styles from your existing button rule */
-    padding: 8px 15px; /* Adjust padding for smaller context */
-    font-size: 0.9rem; /* Adjust font size for smaller context */
-    background-color: #dc3545; /* Change to a more "unsave" related color */
+    padding: 8px 15px; 
+    font-size: 0.9rem; 
+    background-color: #dc3545; 
 }
 
 .saved-herb-actions button:hover {
-    background-color: #c82333; /* Darker "unsave" color on hover */
+    background-color: #c82333; 
 }
 
 .no-saved-herbs {

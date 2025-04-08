@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2025 at 04:58 AM
+-- Generation Time: Apr 08, 2025 at 09:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -49,7 +49,9 @@ INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdd
 (14, 10, 'eva', 'taste spicy', '2025-04-06 23:43:06'),
 (15, 10, 'eva', 'dont like', '2025-04-06 23:43:11'),
 (16, 10, 'eva', 'upsets my stomache', '2025-04-06 23:43:20'),
-(18, 22, 'wennis', 'taste like wood', '2025-04-08 01:51:56');
+(18, 22, 'wennis', 'taste like wood', '2025-04-08 01:51:56'),
+(19, 18, 'adminMark', 'this flower is really good in helping me sleep. has a nice relaxing vibe', '2025-04-08 19:07:05'),
+(20, 18, 'admin2', 'nice i also think is great for me to especially after work', '2025-04-08 19:09:13');
 
 -- --------------------------------------------------------
 
@@ -188,6 +190,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
+('admin2', 'adminOwen', 'w@gmail.com', '$2y$10$JKUOKLjMBHDl2PdC7idUgOdH.9lW63muwKaRh12fquI0n0UmxfFM2', '1,2'),
+('adminMark', 'admin', 't@gmail.com', '$2y$10$4FCU6GgSJVCpWzGpwBLOBO/ewSJKCeTIy3raRuwbm6CYNrB7g4b8G', '1,2,3,8'),
 ('eva', 'eva', 'haha@haha.caewrf', '$2y$10$sTAa4HJx.maLlOqydOGaiuX8NloBRjazT3771PyO3MvbSJ0YsSn/G', '2,3,4,5,6'),
 ('wennis', 'wener', 'haha@haha.com', '$2y$10$T3pSlTJLspe4St/VVb5scur3upQTZyFvH3f3W5/uPtbtpnkzsjo96', '3,5,6');
 
@@ -224,6 +228,12 @@ ALTER TABLE `savedlist`
   ADD KEY `herbID` (`herbID`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -231,7 +241,7 @@ ALTER TABLE `savedlist`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

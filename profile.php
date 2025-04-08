@@ -44,7 +44,7 @@ include 'header.php';
                         echo "</div>";
                         echo "<div class='saved-herb-actions'>";
                         echo "<button onclick='unsaveHerb(" . htmlspecialchars($herb['herbID']) . ", this)'>Unsave</button>";
-                        // prob need ajax to get it to unsave and fetches
+                  
                         echo "</div>";
                         echo "</div>";
                     }

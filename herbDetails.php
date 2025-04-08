@@ -69,12 +69,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     }
 
 
-    // checks the user is logged in
+    // prevents duplicate save and checks user authentication
 
     if (isset($_POST['save_herb'])&& isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         $userId = $_SESSION['userID'];
 
-        // Check if the herb is already saved
         $checkSql = "SELECT * FROM savedlist WHERE userID = ? AND herbID = ?";
         $checkStmt = $conn->prepare($checkSql);
         $checkStmt->bind_param("si", $userId, $herbId);
@@ -82,7 +81,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $checkResult = $checkStmt->get_result();
 
         if ($checkResult->num_rows == 0) {
-            // Save the herb
             $insertSql = "INSERT INTO savedlist (userID, herbID) VALUES (?, ?)";
             $insertStmt = $conn->prepare($insertSql);
             $insertStmt->bind_param("si", $userId, $herbId);
@@ -97,7 +95,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $saveMessage = "Herb is already in your saved list.";
         }
         $checkStmt->close();
-
     }
 } else {
   
@@ -174,21 +171,18 @@ include 'header.php';
         $stmt_comments->close();
         ?>
         
-        
-    
-    
-    <!-- Comment Form -->
-    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-    <div class="comment-form-wrapper">
-        <form action="submitComment.php" method="POST">
-            <textarea name="comment" rows="5" cols="50" required></textarea>
-            <input type="hidden" name="herb_id" value="<?php echo htmlspecialchars($herbId); ?>">
-            <button type="submit">Post Comment</button>
-        </form>
-    </div>
-<?php else: ?>
-    <p>You must be logged in to comment. <a href="login.php">Login</a> or <a href="signup.php">Sign up</a>.</p>
-<?php endif; ?>
+        <!-- Comment Form -->
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+        <div class="comment-form-wrapper">
+            <form action="submitComment.php" method="POST">
+                <textarea name="comment" rows="5" cols="50" required></textarea>
+                <input type="hidden" name="herb_id" value="<?php echo htmlspecialchars($herbId); ?>">
+                <button type="submit">Post Comment</button>
+            </form>
+        </div>
+        <?php else: ?>
+            <p>You must be logged in to comment. <a href="login.php">Login</a> or <a href="signup.php">Sign up</a>.</p>
+        <?php endif; ?>
     </section>
     </main>
 

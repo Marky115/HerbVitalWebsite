@@ -186,24 +186,6 @@ main {
         box-sizing: border-box;
     }
 
-    /* #search-bar-main button {
-        padding: 16px 22px;
-        width: calc(100% - 2rem);
-        margin-top: 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        font-size: 16px;
-        color: #000;
-        border-radius: 5px;
-        background-color: #bbdebc;
-        border: 1px solid #3e8e41;
-        transition: background-color 0.3s ease;
-        box-sizing: border-box;
-    }
-
-    #search-bar-main button:hover {
-        background-color: #d9f0da;
-    } */
 }
 
 /* search result*/
@@ -395,7 +377,8 @@ footer {
     width: 40%;
     padding: 10px;
     font-size: 18px;
-    background:#3e8e41;
+   /* background:#3e8e41;*/
+    background-color: #3db3433e;
     color: white;
     border: none;
     cursor: pointer;
@@ -573,20 +556,7 @@ footer {
     color: #218838;
     text-decoration:underline;
 }
-/* .login-link {
-    text-align: center;
-    margin-top: 10px;
-}
 
-.login-link a {
-    color:#d9f0da ;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-} */
 
 
 /* herb detail page */

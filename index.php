@@ -24,6 +24,7 @@ function getFeaturedConcernDetails() {
     if ($concernResult->num_rows > 0) {
         $concerns = $concernResult->fetch_all(MYSQLI_ASSOC);
         if (!empty($concerns)) {
+            // takes the current week number of the year(starting from 0) and devide by the number of concerns(8) to get the conccern to be listed this week
             $index = ($currentWeek - 1) % count($concerns);
             $concernDetails = $concerns[$index];
         }

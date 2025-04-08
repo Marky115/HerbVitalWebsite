@@ -19,7 +19,10 @@ include 'db_connect.php';
 <body>
     <header>
         <div class="container">
-            <a href="index.php"><h1>HerbVita</h1></a>
+        <a href="index.php" class="header-logo-link">
+            <img src="img/logo.png" alt="HerbVita Logo" class="header-logo-image">
+            <h1>HerbVita</h1>
+        </a>
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>

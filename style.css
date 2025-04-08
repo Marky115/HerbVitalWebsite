@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f6f9f0;
+   /* background-color: #f6f9f0;*/
 }
 
 .container {
@@ -11,6 +11,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    
 }
 
 header {
@@ -22,7 +23,7 @@ header {
 header h1 {
     margin: 0;
     display: inline-block;
-    color: #23472c;
+    color: black;
 }
 
 nav ul {
@@ -275,10 +276,12 @@ main {
 }
 
 footer {
-    background-color: #f0f8f0;
+    background: linear-gradient(to bottom right, #eaf7ea, #f8f5e1);
+
     text-align: center;
     padding: 10px 0;
     border-top: 1px solid #ccc;
+    
 }
 .hidden{
     display: none;
@@ -321,13 +324,14 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to bottom right, #F0FAF1, #FCFAF5);
    
 }
 
 .login-card {
     background-color: white;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px;
     max-width: 80%;
@@ -438,36 +442,34 @@ footer {
 }
 
 /*Sign up content*/
+/*background: linear-gradient(to bottom right, #e4f4e6, #f8f5e1);*/
+
 .sign-up-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom right, #e4f4e6, #f8f5e1);
     margin: 0;
+    padding: 0;
+    background-color: #f9fcf9;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
+.signup-card{
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    display: inline-block;
+}
 
 .container2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 900px;
-   
-    border-radius: 10px;
-    overflow: hidden;
-    
-}
-
-
-.signupContent {
-    display: flex;
     width: 100%;
+    min-height: 100vh;
+    display: flex;
 }
-
 
 .left-side {
-    width: 40%;
+    flex: 1;
+    overflow: hidden;
 }
 
 .left-side img {
@@ -476,24 +478,23 @@ footer {
     object-fit: cover;
 }
 
-
 .right-side {
-    width: 60%;
-    
+    flex: 1;
+    background: linear-gradient(to bottom right, #F0FAF1, #FCFAF5);
     display: flex;
-    flex-direction: column;
-    justify-content: left;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
 .right-side h2 {
-    text-align: center;
+    
     margin-bottom: 20px;
     color: #333;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .form-group label {
@@ -504,15 +505,15 @@ footer {
 
 .form-group input,
 .form-group select {
-    width: 100%;
+    width: 70%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 
-.btn {
-    width: 100%;
+.signupBtn {
+    width: 50%;
     padding: 12px;
     background:#3e8e41;
     border: none;
@@ -523,13 +524,20 @@ footer {
     transition: 0.3s;
 }
 
-.btn:hover {
+.signupBtn:hover {
     background:#367c39;
 }
 
-/*  Login Link */
+.signup-card a {
+    color: #28a745;
+    text-decoration: none;
+  }
 
-.login-link {
+  .signup-card a:hover {
+    color: #218838;
+    text-decoration:underline;
+}
+/* .login-link {
     text-align: center;
     margin-top: 10px;
 }
@@ -542,7 +550,8 @@ footer {
 
 .login-link a:hover {
     text-decoration: underline;
-}
+} */
+
 
 /* herb detail page */
 

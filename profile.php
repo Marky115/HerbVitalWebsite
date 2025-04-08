@@ -27,7 +27,25 @@ include 'header.php';
 
     <main class="container">
         
-        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['userID']); ?>!</h1>
+        <h1>Welcome, <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                $userId = $_SESSION['userID'];
+                $userNameSql = "SELECT name FROM user WHERE userID = ?";
+                $userNameStmt = $conn->prepare($userNameSql);
+                $userNameStmt->bind_param("s", $userId);
+                $userNameStmt->execute();
+                $userNameResult = $userNameStmt->get_result();
+                if ($userNameRow = $userNameResult->fetch_assoc()) {
+                    echo htmlspecialchars($userNameRow['name']);
+                } else {
+                    echo 'User'; //if no name found go with default User
+                }
+                $userNameStmt->close();
+            } else {
+                echo 'Guest'; //default for non-logged-in users but they shou;dnt see this page anyways
+            }
+            ?>!</h1>
+
 
         <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
@@ -35,6 +53,7 @@ include 'header.php';
                 $savedHerbs = getSavedHerbs($conn, $userId);
 
                 if (!empty($savedHerbs)) {
+                     echo "<h2>Your Saved Herbs</h2>";
                     foreach ($savedHerbs as $herb) {
                         echo "<div class='saved-herb-item'>";
                         echo "<img src='" . htmlspecialchars($herb['imagePath']) . "' alt='" . htmlspecialchars($herb['herbName']) . "'>";

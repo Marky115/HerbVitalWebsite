@@ -34,7 +34,7 @@ function getFeaturedConcernDetails() {
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         $userId = $_SESSION['userID'];
 
-        $userInterestSql = "SELECT healthInterest FROM user WHERE userID = ?";
+        $userInterestSql = "SELECT name, healthInterest FROM user WHERE userID = ?";
         $userInterestStmt = $conn->prepare($userInterestSql);
         $userInterestStmt->bind_param("s", $userId);
         $userInterestStmt->execute();
@@ -132,6 +132,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
         $generalHerbsSql = "SELECT herbID, herbName, Benefit, imagePath
                             FROM herb
+                            -- based on health concern ID
                             WHERE healthConcerns = ?
                             GROUP BY herbName
                             ORDER BY RAND()
@@ -145,6 +146,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         }
         $generalHerbsStmt->close();
     } else {
+        // select random by name if $featuredConcern = null
         $generalHerbsSql = "SELECT herbID, herbName, Benefit, imagePath FROM herb GROUP BY herbName ORDER BY RAND() LIMIT 6";
         $generalHerbsResult = $conn->query($generalHerbsSql);
         if ($generalHerbsResult->num_rows > 0) {
@@ -173,6 +175,7 @@ include 'header.php';
                 <?php if (!empty($weeklyFeaturedConcernDesc)): ?>
                     <p><?php echo $weeklyFeaturedConcernDesc; ?></p>
                 <?php else: ?>
+                    <!-- show this if there are no desc for the concern(but we have it set for all 8 concerns) -->
                     <p>Explore our selection of herbs related to this week's highlighted health concern.</p>
                 <?php endif; ?>
             </section>
@@ -181,8 +184,21 @@ include 'header.php';
 
 
     <section id="featured-herbs-db">
-        <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-            <h2>Featured Herbs Just for You, <?php echo htmlspecialchars($_SESSION['userID']); ?>!</h2>
+    <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+            <h2>Featured Herbs Just for You, <?php
+                $userId = $_SESSION['userID'];
+                $userNameSql = "SELECT name FROM user WHERE userID = ?";
+                $userNameStmt = $conn->prepare($userNameSql);
+                $userNameStmt->bind_param("s", $userId);
+                $userNameStmt->execute();
+                $userNameResult = $userNameStmt->get_result();
+                if ($userNameRow = $userNameResult->fetch_assoc()) {
+                    echo '<a href="profile.php">' . htmlspecialchars($userNameRow['name']) . '</a>';
+                } else {
+                    echo 'User'; //if no name found go with default User
+                }
+                $userNameStmt->close();
+                ?>!</h2>
             <?php
             if (!empty($userHerbsByCategory)):
                 foreach ($userHerbsByCategory as $category => $herbs):

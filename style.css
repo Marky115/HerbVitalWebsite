@@ -22,7 +22,11 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-   /* background-color: #f6f9f0;*/
+    position: relative; /*  for absolute positioning of the footer */
+    min-height: 100vh;
+    padding-bottom: 150px;
+    box-sizing: border-box; 
+    margin: 0;
 }
 
 .container {
@@ -188,6 +192,12 @@ main {
 
 }
 
+/* index.php */
+
+#featured-herbs-db a{
+    text-decoration: none;
+    color: #218838;
+}
 /* search result*/
 #livesearch,
 #livesearch-main {
@@ -295,12 +305,35 @@ main {
 }
 
 footer {
-    background: linear-gradient(to bottom right, #eaf7ea, #f8f5e1);
+    /* 
 
     text-align: center;
     padding: 10px 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #ccc; */
     
+    background: linear-gradient(to bottom right, #eaf7ea, #f8f5e1);
+    border-top: 1px solid #ccc;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Fixed footer height */
+    line-height: 60px;
+    padding: 20px 0; /* Example vertical padding */
+    text-align: center;
+
+}
+
+footer .container {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #555; 
 }
 .hidden{
     display: none;
@@ -317,6 +350,9 @@ footer {
 .container1 {
     display: flex;
     width: 100%;
+    padding-bottom: 100px;
+    /* for footer */
+
     
     overflow: hidden;
     
@@ -489,6 +525,9 @@ footer {
 .left-side {
     flex: 1;
     overflow: hidden;
+    padding-bottom: 100px;
+    /* for footer */
+
 }
 
 .left-side img {
@@ -504,6 +543,9 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    padding-bottom: 100px;
+    /* for footer */
+
 }
 
 .right-side h2 {
@@ -865,4 +907,5 @@ transition: background-color 0.3s ease;
     text-align: center;
     color: #777;
     font-style: italic;
+
 }

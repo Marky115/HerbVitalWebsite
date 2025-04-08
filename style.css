@@ -789,17 +789,23 @@ footer {
 
 /* Style for the "Unsave Herb" button */
 .saveherb[name="unsave_herb"] {
-    background-color: #aa3a3a; 
+    background-color: #225925; 
     color: white;
 }
 
 .saveherb[name="unsave_herb"]:hover {
-    background-color: rgb(169, 33, 28);
+    background-color: #3e8e41;
 }
 
 
 
 /* profile page */
+
+.saved-herb-actions {
+    display: flex;
+    gap: 10px; 
+    align-items: center; 
+}
 
 
 .saved-herb-item img{
@@ -813,7 +819,7 @@ footer {
 .saved-herb-actions button {
     
 padding: 10px 20px;
-background-color: #3e8e41;
+background-color: #225925;
 color: white;
 border: none;
 border-radius: 5px;
@@ -823,7 +829,7 @@ transition: background-color 0.3s ease;
 }
 
 .saved-herb-actions button:hover {
-    background-color: #818181; /* Darker red on hover */
+    background-color: #3e8e41; 
 }
 
 .delete-profile-btn{
@@ -880,21 +886,6 @@ transition: background-color 0.3s ease;
     color: #3e8e41;
 }
 
-.saved-herb-actions {
-    display: flex;
-    gap: 10px; 
-    align-items: center; 
-}
-
-.saved-herb-actions button {
-    padding: 8px 15px; 
-    font-size: 0.9rem; 
-    background-color: #dc3545; 
-}
-
-.saved-herb-actions button:hover {
-    background-color: #c82333; 
-}
 
 .no-saved-herbs {
     padding: 15px;

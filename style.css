@@ -27,6 +27,8 @@ body {
     padding-bottom: 150px;
     box-sizing: border-box; 
     margin: 0;
+    background: linear-gradient(to bottom right, #effaf0, #FCFAF5);
+    
 }
 
 .container {
@@ -148,23 +150,6 @@ main {
     outline: none;
     border-color: #3e8e41;
 }
-/* 
-#search-bar-header button,
-#search-bar-main button {
-    padding: 10px 20px;
-    background-color: #3e8e41;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-#search-bar-header button:hover,
-#search-bar-main button:hover {
-    background-color: #367c39;
-} */
 
 .search-icon {
     position: absolute;
@@ -535,13 +520,73 @@ footer p {
 }
 
 /*Sign up content*/
-/*background: linear-gradient(to bottom right, #e4f4e6, #f8f5e1);*/
+.two-column-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+.form-column {
+    width: 100%;
+}
+
+
+.form-column .form-group {
+    margin-bottom: 10px;
+}
+
+.form-column .form-group input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.health-interests-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.interest-checkbox {
+    display: none;
+}
+
+.interest-pill {
+    display: inline-block;
+    background-color: #3db3433e;
+    color: black;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+}
+
+.interest-checkbox:checked + .interest-pill {
+    background-color: #3db343;
+    color: white;
+}
+
+.interest-pill:hover {
+    background-color:#bbdebc83
+}
 
 .sign-up-body {
     margin: 0;
     padding: 0;
     background-color: #f9fcf9;
     min-height: 100vh;
+}
+
+.container2 {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
 }
 
 .signup-card{
@@ -553,18 +598,11 @@ footer p {
     display: inline-block;
 }
 
-.container2 {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-}
-
 .left-side {
     flex: 1;
     overflow: hidden;
     padding-bottom: 100px;
-    /* for footer */
-
+    
 }
 
 .left-side img {
@@ -586,7 +624,6 @@ footer p {
 }
 
 .right-side h2 {
-    
     margin-bottom: 20px;
     color: #333;
 }
@@ -608,7 +645,6 @@ footer p {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
 
 .signupBtn {
     width: 50%;
@@ -668,8 +704,9 @@ footer p {
 .herb-image img { /* Corrected selector to match HTML class */
     max-width: 20rem;
     height: auto;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-bottom: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
 }
 
 
@@ -703,9 +740,9 @@ footer p {
 .herb-details-comments {
     margin-top: 30px;
     padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #eee;
-    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
 }
 
 .herb-details-comments h2 {

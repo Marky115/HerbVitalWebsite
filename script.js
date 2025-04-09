@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const featuredHerbsSection = document.getElementById('featured-herbs-db'); 
 
     concernLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); 
+        link.addEventListener('click', function() {
 
             const concernId = this.dataset.concernId;
 
@@ -56,10 +55,13 @@ function goToHerbPage(herbId) {
             document.getElementById("livesearch").style.border = "0px";
             return;
         }
+
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
+                // checks if successful
             document.getElementById("livesearch").innerHTML = this.responseText;
+
             document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
             }
         }

@@ -27,7 +27,7 @@ body {
     padding-bottom: 180px;
     box-sizing: border-box; 
     margin: 0;
-    background: linear-gradient(to bottom right, #effaf0, #FCFAF5);
+    /* background: linear-gradient(to bottom right, #f7fbf7, #fefdfb); */
     
 }
 
@@ -703,12 +703,21 @@ footer p {
     font-family:Georgia, 'Times New Roman', Times, serif;
 
 }
+
+
+
+.herbPageContainer > div:last-child a{
+    color: #3e8e41;
+    text-decoration: none;
+}
+.herbPageContainer > div:last-child a:hover{
+    text-decoration: underline;
+}
 .herb-image img { /* Corrected selector to match HTML class */
     max-width: 20rem;
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
 }
 
 

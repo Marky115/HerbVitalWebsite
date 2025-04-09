@@ -51,28 +51,20 @@ header h1 {
     transition: color 0.3s ease;
 }
 
-header h1:hover {
-
-    color: #274528;
-}
 
 .header-logo-image {
     max-width: 80px;
     height: auto;
     display: block;
-    transition: opacity 0.2s ease-in-out; /* Optional: Smooth fade effect */
+    transition: opacity 0.2s ease-in-out; 
 }
 
 .header-logo-link {
     display: flex;
     text-decoration: none;
     align-items: center;
-    position: relative; /* Needed for absolute positioning of the hover image */
-    overflow: hidden; /* Clip any potential overflow from the hover image */
-}
-
-.header-logo-link:hover .header-logo-image {
-    opacity: 0; /* Optional: Fade out the original image on hover */
+    position: relative; 
+    overflow: hidden; 
 }
 
 .header-logo-link::before {
@@ -82,17 +74,24 @@ header h1:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('img/logo-hover.png'); /* Path to your hover image */
+    background-image: url('img/logo-hover.png');
     background-repeat: no-repeat;
-    background-size: contain; /* Or adjust as needed */
-    background-position: center left; /* Adjust as needed */
+    background-size: contain; 
+    background-position: center left; 
     opacity: 0;
-    transition: opacity 0.2s ease-in-out; /* Smooth fade effect */
+    transition: opacity 0.2s ease-in-out; 
 }
 
 .header-logo-link:hover::before {
     opacity: 1;
+
 }
+
+.header-logo-link:hover h1 {
+    /* color: #2c652e; */
+    text-shadow: 3px 1px #ffe92046;
+}
+
 nav ul {
 
     list-style: none;

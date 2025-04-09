@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2025 at 09:53 PM
+-- Generation Time: Apr 09, 2025 at 06:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,64 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectherb`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
-
-CREATE TABLE `comments` (
-  `commentID` int(11) NOT NULL,
-  `herbID` int(11) NOT NULL,
-  `userID` varchar(11) NOT NULL,
-  `commentText` text NOT NULL,
-  `timeAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdded`) VALUES
-(8, 25, 'eva', 'qedfsa', '2025-04-06 23:25:03'),
-(9, 25, 'eva', 'weFDS', '2025-04-06 23:25:07'),
-(10, 25, 'eva', 'TY', '2025-04-06 23:25:10'),
-(11, 25, 'eva', 'EWGDDRSFHHHHHHHHHHHHHHHHR STEHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHTESH            DTHSSSSSSSSSSSSSSSSSSSSSSSSSSSSS HTSSSSSSSSSE THSDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD', '2025-04-06 23:27:03'),
-(12, 7, 'eva', 'BEADFZVsafzv', '2025-04-06 23:27:31'),
-(13, 25, 'eva', 'eagrsf', '2025-04-06 23:42:37'),
-(14, 10, 'eva', 'taste spicy', '2025-04-06 23:43:06'),
-(15, 10, 'eva', 'dont like', '2025-04-06 23:43:11'),
-(16, 10, 'eva', 'upsets my stomache', '2025-04-06 23:43:20'),
-(18, 22, 'wennis', 'taste like wood', '2025-04-08 01:51:56'),
-(19, 18, 'adminMark', 'this flower is really good in helping me sleep. has a nice relaxing vibe', '2025-04-08 19:07:05'),
-(20, 18, 'admin2', 'nice i also think is great for me to especially after work', '2025-04-08 19:09:13');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `healthconcerns`
---
-
-CREATE TABLE `healthconcerns` (
-  `concernID` int(11) NOT NULL,
-  `concernName` varchar(50) NOT NULL,
-  `healthDesc` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `healthconcerns`
---
-
-INSERT INTO `healthconcerns` (`concernID`, `concernName`, `healthDesc`) VALUES
-(1, 'Digestive Issues', 'Support a healthy gut with natural herbal remedies. These botanicals are traditionally used to soothe discomfort, aid digestion, and promote overall digestive wellness, helping you feel balanced and comfortable.'),
-(2, 'Immune Support', 'Boost your body\'s natural defenses with the power of herbs. Known for their ability to fortify the immune system, these natural options can help you stay resilient and maintain good health throughout the year.'),
-(3, 'Stress and Anxiety', 'Find natural calm and relaxation with traditional herbs. These botanicals are often used to ease tension, reduce anxiety, and promote a more peaceful state of mind, supporting your emotional well-being.'),
-(4, 'Inflammation and Pain', 'Discover nature\'s solutions for managing discomfort. Certain herbs possess properties that may help reduce inflammation and alleviate pain, offering natural support for a more active and comfortable life.'),
-(5, 'Skin Health', 'Nourish and support your skin naturally with herbal remedies. These botanicals are traditionally used to promote a healthy complexion, address various skin concerns, and enhance your natural radiance.'),
-(6, 'Sleep Disorders', 'Encourage restful sleep with the gentle power of herbs. Traditionally used to calm the mind and promote healthy sleep patterns, these natural aids can help you achieve a more rejuvenating night\'s rest.'),
-(7, 'Cardiovascular Health', 'Support a healthy heart and circulation with natural herbs. These botanicals are often used to maintain cardiovascular wellness and contribute to a balanced and energetic lifestyle.'),
-(8, 'Detoxification', 'Gently cleanse and support your body\'s natural detoxification processes with selected herbs. These natural aids can assist in eliminating impurities and promoting overall internal balance.');
 
 -- --------------------------------------------------------
 
@@ -149,69 +91,9 @@ INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Ben
 (47, 'Burdock Root', 'Mild allergic reactions', 'Cooked (as food), tea', 'Helps cleanse the liver and detoxify the body', 8, 'img/burdock.jpg'),
 (48, 'Schisandra', 'Skin rash, heartburn', 'Powder, capsules', 'Supports liver detox and regeneration with antioxidant properties', 8, 'img/Schisandra.jpg');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `savedlist`
---
-
-CREATE TABLE `savedlist` (
-  `userID` varchar(11) NOT NULL,
-  `herbID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `savedlist`
---
-
-INSERT INTO `savedlist` (`userID`, `herbID`) VALUES
-('wenny', 3),
-('eva', 7),
-('eva', 25),
-('wennis', 45),
-('wennis', 22);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `userID` varchar(11) NOT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `passwordHash` varchar(255) NOT NULL,
-  `healthInterest` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
-('admin2', 'adminOwen', 'w@gmail.com', '$2y$10$JKUOKLjMBHDl2PdC7idUgOdH.9lW63muwKaRh12fquI0n0UmxfFM2', '1,2'),
-('adminMark', 'admin', 't@gmail.com', '$2y$10$4FCU6GgSJVCpWzGpwBLOBO/ewSJKCeTIy3raRuwbm6CYNrB7g4b8G', '1,2,3,8'),
-('eva', 'eva', 'haha@haha.caewrf', '$2y$10$sTAa4HJx.maLlOqydOGaiuX8NloBRjazT3771PyO3MvbSJ0YsSn/G', '2,3,4,5,6'),
-('wennis', 'wener', 'haha@haha.com', '$2y$10$T3pSlTJLspe4St/VVb5scur3upQTZyFvH3f3W5/uPtbtpnkzsjo96', '3,5,6');
-
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`commentID`),
-  ADD KEY `herbID` (`herbID`),
-  ADD KEY `userID` (`userID`);
-
---
--- Indexes for table `healthconcerns`
---
-ALTER TABLE `healthconcerns`
-  ADD PRIMARY KEY (`concernID`);
 
 --
 -- Indexes for table `herb`
@@ -219,29 +101,6 @@ ALTER TABLE `healthconcerns`
 ALTER TABLE `herb`
   ADD PRIMARY KEY (`herbID`),
   ADD KEY `healthConcerns` (`healthConcerns`);
-
---
--- Indexes for table `savedlist`
---
-ALTER TABLE `savedlist`
-  ADD KEY `userID` (`userID`),
-  ADD KEY `herbID` (`herbID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

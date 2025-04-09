@@ -24,7 +24,7 @@ body {
     line-height: 1.6;
     position: relative; /*  for absolute positioning of the footer */
     min-height: 100vh;
-    padding-bottom: 150px;
+    padding-bottom: 180px;
     box-sizing: border-box; 
     margin: 0;
     background: linear-gradient(to bottom right, #effaf0, #FCFAF5);
@@ -53,28 +53,20 @@ header h1 {
     transition: color 0.3s ease;
 }
 
-header h1:hover {
-
-    color: #274528;
-}
 
 .header-logo-image {
     max-width: 80px;
     height: auto;
     display: block;
-    transition: opacity 0.2s ease-in-out; /* Optional: Smooth fade effect */
+    transition: opacity 0.2s ease-in-out; 
 }
 
 .header-logo-link {
     display: flex;
     text-decoration: none;
     align-items: center;
-    position: relative; /* Needed for absolute positioning of the hover image */
-    overflow: hidden; /* Clip any potential overflow from the hover image */
-}
-
-.header-logo-link:hover .header-logo-image {
-    opacity: 0; /* Optional: Fade out the original image on hover */
+    position: relative; 
+    overflow: hidden; 
 }
 
 .header-logo-link::before {
@@ -84,17 +76,24 @@ header h1:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('img/logo-hover.png'); /* Path to your hover image */
+    background-image: url('img/logo-hover.png');
     background-repeat: no-repeat;
-    background-size: contain; /* Or adjust as needed */
-    background-position: center left; /* Adjust as needed */
+    background-size: contain; 
+    background-position: center left; 
     opacity: 0;
-    transition: opacity 0.2s ease-in-out; /* Smooth fade effect */
+    transition: opacity 0.2s ease-in-out; 
 }
 
 .header-logo-link:hover::before {
     opacity: 1;
+
 }
+
+.header-logo-link:hover h1 {
+    /* color: #2c652e; */
+    text-shadow: 3px 1px #ffe92046;
+}
+
 nav ul {
 
     list-style: none;
@@ -339,9 +338,9 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Fixed footer height */
-    line-height: 60px;
-    padding: 20px 0; /* Example vertical padding */
+    height: 140px; /* Fixed footer height */
+    /* line-height: 60px; */
+    padding: 20px 0; 
     text-align: center;
 
 }
@@ -354,13 +353,16 @@ footer .container {
 
 footer p {
     margin: 0;
-    font-size: 0.9em;
     color: #555; 
 }
 .hidden{
     display: none;
 }
 
+.footer-logo-image{
+    width: 5rem;
+    padding-bottom: 0;
+}
 /* login page*/
 
 .login-body{
@@ -372,7 +374,7 @@ footer p {
 .container1 {
     display: flex;
     width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 180px;
     /* for footer */
 
     
@@ -618,7 +620,7 @@ footer p {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    padding-bottom: 100px;
+    padding-bottom: 180px;
     /* for footer */
 
 }

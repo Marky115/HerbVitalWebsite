@@ -24,7 +24,7 @@ body {
     line-height: 1.6;
     position: relative; /*  for absolute positioning of the footer */
     min-height: 100vh;
-    padding-bottom: 150px;
+    padding-bottom: 180px;
     box-sizing: border-box; 
     margin: 0;
 }
@@ -353,9 +353,9 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Fixed footer height */
-    line-height: 60px;
-    padding: 20px 0; /* Example vertical padding */
+    height: 140px; /* Fixed footer height */
+    /* line-height: 60px; */
+    padding: 20px 0; 
     text-align: center;
 
 }
@@ -368,13 +368,16 @@ footer .container {
 
 footer p {
     margin: 0;
-    font-size: 0.9em;
     color: #555; 
 }
 .hidden{
     display: none;
 }
 
+.footer-logo-image{
+    width: 5rem;
+    padding-bottom: 0;
+}
 /* login page*/
 
 .login-body{
@@ -386,7 +389,7 @@ footer p {
 .container1 {
     display: flex;
     width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 180px;
     /* for footer */
 
     
@@ -561,7 +564,7 @@ footer p {
 .left-side {
     flex: 1;
     overflow: hidden;
-    padding-bottom: 100px;
+    padding-bottom: 180px;
     /* for footer */
 
 }
@@ -579,7 +582,7 @@ footer p {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    padding-bottom: 100px;
+    padding-bottom: 180px;
     /* for footer */
 
 }

@@ -17,7 +17,7 @@ include 'header.php';
         
 
         <div id="search-bar-main">
-            <form action="search.php" method="get">
+            <form action="livesearch.php" method="get">
                 <input type="text" name="query" placeholder="Search Herbs..." size="30" onkeyup="showResultMain(this.value)">
                 <span class="search-icon"></span>
                 <div id="livesearch-main"></div>

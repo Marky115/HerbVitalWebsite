@@ -2,10 +2,6 @@
 
 include 'db_connect.php'; 
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 
 if (!$conn) { 
     die("Database connection failed: " . mysqli_connect_error());
@@ -24,10 +20,7 @@ if (strlen($q) > 0) {
     $result = $conn->query($query); 
 
     if ($result->num_rows > 0) {
-
-        
         while ($row = $result->fetch_assoc()) {
-
             if ($hint === "") {
                 $hint = "<div onclick='goToHerbPage(\"" . $row['herbID'] . "\")'>" . htmlspecialchars($row['herbName']) . "</div>";
             } else {

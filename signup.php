@@ -1,6 +1,8 @@
 <?php
 include ('signup-process.php');
 include 'db_connect.php'; // Include your database connection
+include 'header.php';
+$title = "Sign Up";
 
 
 $sql = "SELECT concernID, concernName FROM healthconcerns";
@@ -24,12 +26,11 @@ $conn->close();
 </head>
 <body class='sign-up-body'>
     <div class="container2">
-      
-        <div class="signupContent">
-            <div class='left-side'>
-                <img src="./img/signupBG.jpg" alt='herb'> 
-            </div>
-            <div class='right-side'>
+        <div class='left-side'>
+            <img src="./img/signupBG.jpg" alt='herb'> 
+        </div>
+        <div class='right-side'>
+            <div class='signup-card'> 
                 <h2>Welcome to HerbVita</h2>
 
 
@@ -42,56 +43,55 @@ $conn->close();
                 ?>
 
                 <form action="signup-process.php" method="POST">
-                <div class='form-group'>
-                    <label for="userID">User ID:</label>
-                    <input type="text" id="userID" name="userID"  required>
-                </div>
+                    <div class="two-column-container">
+                        <!-- Left Column -->
+                        <div class="form-column">
+                            <div class='form-group'>
+                                <label for="userID">User ID:</label>
+                                <input type="text" id="userID" name="userID" required>
+                            </div>
+                            
+                            <div class='form-group'>
+                                <label for="Name">Name:</label>
+                                <input type="text" id="Name" name="Name" maxlength="20" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column -->
+                        <div class="form-column">
+                            <div class='form-group'>
+                                <label for="Email">Email:</label>
+                                <input type="email" id="Email" name="Email" required>
+                            </div>
+                            
+                            <div class='form-group'>
+                                <label for="passwordHash">Password:</label>
+                                <input type="password" id="passwordHash" name="passwordHash" required>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class='form-group'>
-                    <label for="Name">Name:</label>
-                    <input type="text" id="Name" name="Name"  maxlength="20" required>
-                </div>
+                
+                    <div class='form-group'>
+                        <label>Health Interests:</label>
+                        <div class="health-interests-container">
+                            <?php foreach ($healthConcerns as $concernId => $concernName): ?>
+                            <input type="checkbox" id="concern_<?php echo $concernId; ?>" name="healthInterest[]" value="<?php echo $concernId; ?>" class="interest-checkbox">
+                            <label for="concern_<?php echo $concernId; ?>" class="interest-pill"><?php echo $concernName; ?></label>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
 
-                <div class='form-group'>
-                    <label for="Email">Email:</label>
-                    <input type="email" id="Email" name="Email"  required>
-                </div>
-
-                <div class='form-group'>
-                    <label for="passwordHash">Password:</label>
-                    <input type="password" id="passwordHash" name="passwordHash"  required>
-                </div>
-
-                <div class='form-group'>
-                    <label for="healthInterest">Health Interests:</label>
-                    <select id="healthInterest" name="healthInterest[]" multiple required size="5">
-                        <?php foreach ($healthConcerns as $concernId => $concernName): ?>
-                        <option value="<?php echo $concernId; ?>"><?php echo $concernName; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        const select = document.getElementById("healthInterest");
-
-                        select.addEventListener("mousedown", function(e) {
-                            e.preventDefault();
-                            let option = e.target;
-                            if (option.tagName === "OPTION") {
-                                option.selected = !option.selected;
-                            }
-                        });
-                    });
-                </script>
-
-                <button type="submit" class='btn'>Sign Up</button>
+                    <button type="submit" class='signupBtn'>Sign Up</button>
                 </form>
 
                 <p>Already have an account? <a href="login.php">Login</a></p>
             </div>
-           
         </div>
+        
     </div>
+    
+<?php include 'footer.php'; ?>
 </body>
+
 </html>

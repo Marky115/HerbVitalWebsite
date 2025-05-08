@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2025 at 05:26 AM
+-- Generation Time: Apr 09, 2025 at 06:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,74 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectherb`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
-
-CREATE TABLE `comments` (
-  `commentID` int(11) NOT NULL,
-  `herbID` int(11) NOT NULL,
-  `userID` varchar(11) NOT NULL,
-  `commentText` text NOT NULL,
-  `timeAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`commentID`, `herbID`, `userID`, `commentText`, `timeAdded`) VALUES
-(15, 25, 'wennis', 'hello', '2025-04-02 20:09:19'),
-(16, 25, 'wennis', 'bye', '2025-04-02 20:09:22'),
-(17, 25, 'tehe1', 'hi', '2025-04-02 20:10:21'),
-(18, 41, 'tehe1', 'hello', '2025-04-02 20:11:09'),
-(19, 11, 'wennis', 'thats a you problem', '2025-04-05 02:55:40'),
-(20, 11, 'wennis', 'yeah im talking to you', '2025-04-05 02:55:48'),
-(21, 11, 'tehe1', 'thats what i thought', '2025-04-05 02:56:09'),
-(22, 48, 'tehe1', 'testing', '2025-04-05 02:56:41'),
-(23, 25, 'wennis', 'sup', '2025-04-05 03:07:44'),
-(24, 45, 'wennis', 'taste bad', '2025-04-05 03:08:04'),
-(25, 13, 'wennis', 'its too bitter for me turns my tongue yellow', '2025-04-05 03:08:25');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `featuredherb`
---
-
-CREATE TABLE `featuredherb` (
-  `featuredID` varchar(11) NOT NULL,
-  `Date` date NOT NULL,
-  `herbID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `healthconcerns`
---
-
-CREATE TABLE `healthconcerns` (
-  `concernID` int(11) NOT NULL,
-  `concernName` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `healthconcerns`
---
-
-INSERT INTO `healthconcerns` (`concernID`, `concernName`) VALUES
-(1, 'Digestive Issues'),
-(2, 'Immune Support'),
-(3, 'Stress and Anxiety'),
-(4, 'Inflammation and Pain'),
-(5, 'Skin Health'),
-(6, 'Sleep Disorders'),
-(7, 'Cardiovascular Health'),
-(8, 'Detoxification');
 
 -- --------------------------------------------------------
 
@@ -130,16 +62,16 @@ INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Ben
 (18, 'Passionflower', 'Drowsiness', 'Tea or capsules', 'Used to reduce anxiety and promote relaxation', 3, 'img/passionflower.jpg'),
 (19, 'Turmeric', 'Stomach upset (rare)', 'Capsule or extract', 'Known for its anti-inflammatory properties', 4, 'img/turmeric.png'),
 (20, 'Ginger', 'Mild stomach upset', 'Tea or capsule', 'Reduces pain and inflammation', 4, 'img/ginger.png'),
-(21, 'Boswellia', 'Stomach upset', 'Capsules', 'Has anti-inflammatory and pain-relieving properties.', 4, 'img/Boswellia.png'),
-(22, 'Willow Bark', 'Stomach upset, dizziness', 'Tea, Capsules', 'Used for pain relief and to reduce inflammation.', 4, 'img/willow.jpg'),
-(23, 'Devil’s Claw', 'Diarrhea, stomach upset', 'Capsules, Powder', 'Reduces inflammation and alleviates pain.', 4, 'img/devilclaw.jpg'),
-(24, 'Capsaicin', 'Burning sensation, skin irritation', 'Cream, Capsules', 'Helps alleviate pain and reduce inflammation.', 4, 'img/Capsaicin.jpg'),
-(25, 'Aloe Vera', 'Allergic reactions in some.', 'Gel, Cream', 'Used for burns, acne, and skin irritation.', 5, 'img/aloe.jpg'),
-(26, 'Calendula', 'Mild allergic reactions', 'Cream, Ointment', 'Heals wounds, reduces inflammation, and helps with skin conditions.', 5, 'img/Calendula.jpg'),
-(27, 'Tea Tree Oil', 'Skin irritation, allergic reactions', 'Essential Oil', 'Used for acne and fungal infections.', 5, 'img/teatree.jpg'),
-(28, 'Lavender', 'Allergic reactions in some.', 'Essential Oil, Cream', 'Promotes skin healing and soothes irritation.', 5, 'img/Lavender.jpg'),
-(29, 'Chamomile', 'Mild allergic reactions', 'Cream, Tea', 'Calms skin and reduces inflammation.', 5, 'img/chamomile.jpg'),
-(30, 'Neem', 'Skin irritation, allergic reactions', 'Oil, Cream', 'Used to treat skin infections, acne, and rashes.', 5, 'img/Neem.jpg'),
+(21, 'Boswellia', 'Stomach upset', 'Capsules', 'Has anti-inflammatory and pain-relieving properties', 4, 'img/Boswellia.png'),
+(22, 'Willow Bark', 'Stomach upset, dizziness', 'Tea, Capsules', 'Used for pain relief and to reduce inflammation', 4, 'img/willow.jpg'),
+(23, 'Devil’s Claw', 'Diarrhea, stomach upset', 'Capsules, Powder', 'Reduces inflammation and alleviates pain', 4, 'img/devilclaw.jpg'),
+(24, 'Capsaicin', 'Burning sensation, skin irritation', 'Cream, Capsules', 'Helps alleviate pain and reduce inflammation', 4, 'img/Capsaicin.jpg'),
+(25, 'Aloe Vera', 'Allergic reactions in some.', 'Gel, Cream', 'Used for burns, acne, and skin irritation', 5, 'img/aloe.jpg'),
+(26, 'Calendula', 'Mild allergic reactions', 'Cream, Ointment', 'Heals wounds, reduces inflammation, and helps with skin conditions', 5, 'img/Calendula.jpg'),
+(27, 'Tea Tree Oil', 'Skin irritation, allergic reactions', 'Essential Oil', 'Used for acne and fungal infections', 5, 'img/teatree.jpg'),
+(28, 'Lavender', 'Allergic reactions in some.', 'Essential Oil, Cream', 'Promotes skin healing and soothes irritation', 5, 'img/Lavender.jpg'),
+(29, 'Chamomile', 'Mild allergic reactions', 'Cream, Tea', 'Calms skin and reduces inflammation', 5, 'img/chamomile.jpg'),
+(30, 'Neem', 'Skin irritation, allergic reactions', 'Oil, Cream', 'Used to treat skin infections, acne, and rashes', 5, 'img/Neem.jpg'),
 (31, 'Valerian Root', 'Drowsiness,stomach upset', 'Capsule, tea, tincture', 'Promotes relaxation,reduces anxiety and improves sleep quality', 6, 'img/valerian.jpg'),
 (32, 'Lavender', 'Skin irritation, mild allergic reaction', 'Tea, essential oil', 'Known for its anti-inflammatory properties and calming effects', 6, 'img/Lavender.jpg'),
 (33, 'Chamomile', 'Mild allergic reactions', 'Tincture, Tea', 'Aids relaxation and improves sleep quality', 6, 'img/chamomile.jpg'),
@@ -159,76 +91,9 @@ INSERT INTO `herb` (`herbID`, `herbName`, `sideEffect`, `recommendedUsage`, `Ben
 (47, 'Burdock Root', 'Mild allergic reactions', 'Cooked (as food), tea', 'Helps cleanse the liver and detoxify the body', 8, 'img/burdock.jpg'),
 (48, 'Schisandra', 'Skin rash, heartburn', 'Powder, capsules', 'Supports liver detox and regeneration with antioxidant properties', 8, 'img/Schisandra.jpg');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `savedlist`
---
-
-CREATE TABLE `savedlist` (
-  `userID` varchar(11) NOT NULL,
-  `herbID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `savedlist`
---
-
-INSERT INTO `savedlist` (`userID`, `herbID`) VALUES
-('0', 11),
-('0', 48),
-('0', 45),
-('0', 25),
-('0', 13);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `userID` varchar(11) NOT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `passwordHash` varchar(255) NOT NULL,
-  `healthInterest` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`userID`, `Name`, `Email`, `passwordHash`, `healthInterest`) VALUES
-('rash1', 'rashy', 'rashy@gmail.com', '$2y$10$rebZuRZiEtlym8eoA8a3RuwyiyYZWLkS13aD3KkY1ym.8ODz9VTGu', 2),
-('tehe1', 'rash', 'rash@gmaill.com', '$2y$10$Xe0g6fGohUXUdpb6UyeNDuQ5sY.pW1TGPwLy27i83gP9flIoCrey6', 1),
-('wennis', 'wener', 'haha@haha.com', '$2y$10$fqilOMzoF6vxr20yJj/hFOVBQZlZzfMjTG.c6yYwwTrGRZQuAXtrK', 0),
-('wenny', 'wenny', 'hihi@haha.com', '$2y$10$5F2/dRTCjUToDXd487jxuuCTMQL4m.mM5owhBR0oG5r18k/dZ8x.m', 8);
-
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`commentID`),
-  ADD KEY `herbID` (`herbID`),
-  ADD KEY `userID` (`userID`);
-
---
--- Indexes for table `featuredherb`
---
-ALTER TABLE `featuredherb`
-  ADD PRIMARY KEY (`featuredID`),
-  ADD KEY `herbID` (`herbID`);
-
---
--- Indexes for table `healthconcerns`
---
-ALTER TABLE `healthconcerns`
-  ADD PRIMARY KEY (`concernID`);
 
 --
 -- Indexes for table `herb`
@@ -236,30 +101,6 @@ ALTER TABLE `healthconcerns`
 ALTER TABLE `herb`
   ADD PRIMARY KEY (`herbID`),
   ADD KEY `healthConcerns` (`healthConcerns`);
-
---
--- Indexes for table `savedlist`
---
-ALTER TABLE `savedlist`
-  ADD KEY `userID` (`userID`),
-  ADD KEY `herbID` (`herbID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userID`),
-  ADD UNIQUE KEY `healthInterest` (`healthInterest`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

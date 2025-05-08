@@ -1,15 +1,30 @@
+
+
 Use callback URL stored in session to redirect after logging in
 
-Cycle though the 8 health concerns on homepage
+WENHAN Cycle though the 8 health concerns on homepage
+    Show user saved health intrest herb on home page
 
-Saved Herb add and remove 
+
+Saved Herb/profile page add and MARK 
+    remove
+    show unsave in the herbdetail page if its saved in the user's db, if its not show save
+    Styled better
+    add delete profile, delete their comments associated with their acc as well.
 
 Comment
+    styled better
 
 Sign Up Page
 
-    Health Interests: Registration failed. Please try again. Duplicate entry '1' for key 'healthInterest'
+    MARK Health Interests: Registration failed. Please try again. Duplicate entry '1' for key 'healthInterest'
 
 savedlist
 
-    needs to save the userID associated with the herbID
+    DONE needs to save the userID associated with the herbID
+
+LiveSearch
+    Not a proper error message when the user searches for something that’s not in the database
+
+Delete the featuredherb table as not being used 
+Add another text row for health conerns briefly address what the concern addresses to be displayed on the featured page.

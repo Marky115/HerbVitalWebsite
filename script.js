@@ -49,25 +49,24 @@ function goToHerbPage(herbId) {
     window.location.href = `herbDetails.php?id=${herbId}`;
 }
   
-  function showResult(str) {
-        if (str.length === 0) {
-            document.getElementById("livesearch").innerHTML = "";
-            document.getElementById("livesearch").style.border = "0px";
-            return;
-        }
+// fetch using fetch api
+function showResult(str) {
+    if (str.length === 0) {
+        document.getElementById("livesearch").innerHTML = "";
+        document.getElementById("livesearch").style.border = "0px";
+        return;
+    }
 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                // checks if successful
-            document.getElementById("livesearch").innerHTML = this.responseText;
-
+    fetch("livesearch.php?q=" + encodeURIComponent(str))
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("livesearch").innerHTML = data;
             document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
-            }
-        }
-        xmlhttp.open("GET", "livesearch.php?q=" + str, true);
-        xmlhttp.send();
-        }
+        })
+        .catch(error => {
+            console.error("Error fetching search results:", error);
+        });
+}
 
 document.querySelector('#search-bar-header input[name="query"]').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {

@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function() {
 
             const concernId = this.dataset.concernId;
-
+            
             if (concernId) {
+                
                 fetch('herbs_by_concern.php', {
                     method: 'POST',
                     headers: {
@@ -49,14 +50,14 @@ function goToHerbPage(herbId) {
     window.location.href = `herbDetails.php?id=${herbId}`;
 }
   
-// fetch using fetch api
+
 function showResult(str) {
     if (str.length === 0) {
         document.getElementById("livesearch").innerHTML = "";
         document.getElementById("livesearch").style.border = "0px";
         return;
     }
-
+    // fetch using fetch api to get the herb details
     fetch("livesearch.php?q=" + encodeURIComponent(str))
         .then(response => response.text())
         .then(data => {
@@ -162,6 +163,7 @@ document.querySelector('#search-bar-header input[name="query"]').addEventListene
                 xhr.onload = function() {
                     if (xhr.status === 200) {
                         try {
+                            //JSON APIs
                             const response = JSON.parse(xhr.responseText);
                             if (response.success) {
                                 // Remove the herb element from the DOM

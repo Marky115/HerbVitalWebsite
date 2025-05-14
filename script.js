@@ -15,19 +15,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const concernId = this.dataset.concernId;
             
             if (concernId) {
-                
                 fetch('herbs_by_concern.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: 'concern_id=' + concernId
+                    body: 'concern_id=' + encodeURIComponent(concernId)
                 })
-                .then(response => response.text())
+                .then(response => response.json()) // Parse the response as JSON
                 .then(data => {
-                    // Update the content of the featured herbs section with the filtered results
-                    if (featuredHerbsSection) {
-                        featuredHerbsSection.innerHTML = '<h2>Herbs for ' + this.textContent + '</h2>' + data;
+                    if (data.success) {
+                        let html = '<h2>Herbs for ' + this.textContent + '</h2>';
+                        // Loop through each herb to build the UI dynamically
+                        data.herbs.forEach(herb => {
+                            html += `
+                                <div class="herb-item" onclick="window.location.href='herbDetails.php?id=${herb.herbID}'">
+                                    <img src="${herb.imagePath}" alt="${herb.herbName}">
+                                    <h3>${herb.herbName}</h3>
+                                    <p>${herb.Benefit}</p>
+                                </div>
+                            `;
+                        });
+                        featuredHerbsSection.innerHTML = html;
+                    } else {
+                        featuredHerbsSection.innerHTML = '<p>' + data.message + '</p>';
                     }
                 })
                 .catch(error => {
@@ -37,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
+
         });
     });
 

@@ -1,5 +1,11 @@
 <?php
 include 'db_connect.php';
+header('Content-Type: application/json'); //tells the client that the response is JSON
+
+if (!$conn) {
+    echo json_encode(['success' => false, 'message' => 'Database connection failed.']);
+    exit;
+}
 
 if (isset($_POST['concern_id']) && is_numeric($_POST['concern_id'])) {
     $concernID = $conn->real_escape_string($_POST['concern_id']);
@@ -10,26 +16,26 @@ if (isset($_POST['concern_id']) && is_numeric($_POST['concern_id'])) {
             GROUP BY herbName";
 
     $result = $conn->query($sql);
+    $herbs = [];
 
     if ($result->num_rows > 0) {
-        echo '<div class="herb-grid">';
         while ($row = $result->fetch_assoc()) {
-            $imagePath = htmlspecialchars($row['imagePath']);
-            $herbDetailsLink = 'herbDetails.php?id=' . $row['herbID'];
-        
-            echo '<div class="herb-item" onclick="window.location.href=\'' . $herbDetailsLink . '\'">';
-                echo '<img src="' . $imagePath . '" alt="' . htmlspecialchars($row['herbName']) . '">';
-                echo '<h3>' . $row['herbName'] . '</h3>';
-                echo '<p>' . substr($row['Benefit'], 0, 100) . '.</p>';
-                echo '</div>';
+            $herbs[] = [
+                'herbID' => (int)$row['herbID'],
+                'herbName' => $row['herbName'],
+                'Benefit' => $row['Benefit'],
+                'imagePath' => $row['imagePath']
+            ];
         }
-        echo '</div>';
-    } else {
-        echo '<p>No herbs found for this health concern.</p>';
+        echo json_encode(['success' => true, 'herbs' => $herbs]); 
+    } 
+    else {
+        echo json_encode(['success' => false, 'message' => 'No herbs found for this health concern.']);
     }
+    
 } else {
-    echo '<p>Invalid request.</p>';
-}
+    echo json_encode(['success' => false, 'message' => 'Invalid or missing concern ID.']);
+} 
 
 $conn->close();
 ?>

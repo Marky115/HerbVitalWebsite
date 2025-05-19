@@ -22,6 +22,8 @@ $sql = "DELETE FROM savedlist WHERE userID = ? AND herbID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("si", $userId, $herbId);
 
+
+//JSon APIs
 if ($stmt->execute()) {
     // Successfully deleted
     echo json_encode(['success' => true]);

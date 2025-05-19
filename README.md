@@ -8,4 +8,19 @@ HTML,
 CSS,
 JavaScript
 
+# Features
+**Visitors:**
+- Can browse and filter herb content.
+- See the same default content and navigation options.
+- Have access to detailed herb pages.
+- Option to register to become a member.
+
+**Members:**
+- save herbs
+- Can Signup/Login
+- Personlize homepage
+- Update their registration information
+- Post comments on herb detail pages to create a community
+
+
 

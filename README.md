@@ -25,7 +25,7 @@ JavaScript
 - Update their registration information
 - Post comments on herb detail pages to create a community
 
-**Screenshots:**
+## Screenshots
 ![localhost_459FinalProj_](https://github.com/user-attachments/assets/ea2b4383-df70-41c4-8532-43b79b8d9738)
 
 ![localhost_459FinalProj_signup php](https://github.com/user-attachments/assets/343e76da-be80-46e8-aa26-7ce2783835f8)
